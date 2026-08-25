@@ -1,0 +1,7 @@
+{
+  "name": "memoriza",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
