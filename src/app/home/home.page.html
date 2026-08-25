@@ -1,20 +1,134 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
+
   <ion-toolbar>
+
     <ion-title>
-      Blank
+      <span class="app-title">Memoriza</span>
     </ion-title>
+
   </ion-toolbar>
+
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content
+  class="game-content"
+  [scrollY]="false">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="game-wrapper">
+
+    <div class="scoreboard">
+
+      <div class="score-slot">
+
+        <span class="score-label">
+          Pares
+        </span>
+
+        <span class="score-value">
+          {{ matches }}
+          <small>/{{ pairs }}</small>
+        </span>
+
+      </div>
+
+      <div class="score-divider"></div>
+
+      <div class="score-slot">
+
+        <span class="score-label">
+          Intentos
+        </span>
+
+        <span class="score-value">
+          {{ attempts }}
+        </span>
+
+      </div>
+
+      <button
+        class="restart-btn"
+        (click)="newGame()">
+
+        ↻
+
+      </button>
+
+    </div>
+
+    <div
+      class="message"
+      *ngIf="finished">
+
+      ¡Álbum completo!
+      ·
+      {{ attempts }} intentos
+
+    </div>
+
+    <div class="board">
+
+      <button
+        class="card"
+        *ngFor="let c of cards"
+
+        [ngClass]="{
+          'revealed': c.revealed || c.matched,
+          'matched': c.matched
+        }"
+
+        [disabled]="boardLocked || c.matched"
+
+        (click)="onCardClick(c)">
+
+        <div class="face back">
+
+          <div class="crest-text">
+            MFC
+          </div>
+
+          <img
+            class="crest-icon"
+            src="assets/imagenes/escudo.png"
+            alt="Millonarios FC">
+
+          <div class="foil-shine"></div>
+
+        </div>
+
+        <div class="face front">
+
+          <div class="legend-tag">
+            LEYENDA
+          </div>
+
+          <div class="player-photo-wrap">
+
+            <img
+              class="player-img"
+              [src]="c.image"
+              alt="Jugador legendario">
+
+          </div>
+
+          <div class="team-strip">
+
+            <img
+              class="crest-small"
+              src="assets/imagenes/escudo.png"
+              alt="Escudo">
+
+            <span class="team-name">
+              MILLONARIOS FC
+            </span>
+
+          </div>
+
+        </div>
+
+      </button>
+
+    </div>
+
   </div>
+
 </ion-content>
