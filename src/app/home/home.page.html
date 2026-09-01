@@ -2,41 +2,71 @@
 
   <ion-toolbar>
 
-    <ion-title>
-      <span class="app-title">Memoriza</span>
-    </ion-title>
+    <div class="brand">
+
+      <div class="brand-crown">
+        ♛
+      </div>
+
+      <div class="brand-title">
+        MEMORIZA
+      </div>
+
+      <div class="brand-stars">
+        <span>✦</span>
+        <span>✦</span>
+      </div>
+
+      <div class="brand-line"></div>
+
+      <div class="brand-shield">
+        M
+      </div>
+
+    </div>
 
   </ion-toolbar>
 
 </ion-header>
 
-<ion-content
-  class="game-content"
-  [scrollY]="false">
+
+<ion-content class="game-content">
 
   <div class="game-wrapper">
+
+
+    <!-- =========================
+         MARCADOR
+         ========================= -->
 
     <div class="scoreboard">
 
       <div class="score-slot">
 
         <span class="score-label">
-          Pares
+          PARES
         </span>
 
         <span class="score-value">
+
           {{ matches }}
-          <small>/{{ pairs }}</small>
+
+          <small>
+            / {{ pairs }}
+          </small>
+
         </span>
 
       </div>
 
+
       <div class="score-divider"></div>
+
 
       <div class="score-slot">
 
         <span class="score-label">
-          Intentos
+          INTENTOS
         </span>
 
         <span class="score-value">
@@ -45,30 +75,77 @@
 
       </div>
 
+
+      <div class="score-divider"></div>
+
+
+      <div class="score-slot">
+
+        <span class="score-label">
+          MEJOR
+        </span>
+
+        <span class="score-value">
+          {{ bestAtems > 0 ? bestAtems : '—' }}
+        </span>
+
+      </div>
+
+
       <button
         class="restart-btn"
-        (click)="newGame()">
+        type="button"
+        aria-label="Nueva partida"
+        (click)="newGame()"
+      >
 
-        ↻
+        <span class="restart-icon">
+          ↻
+        </span>
 
       </button>
 
     </div>
 
+
+    <!-- =========================
+         MENSAJE FINAL
+         ========================= -->
+
     <div
       class="message"
-      *ngIf="finished">
+      *ngIf="finished"
+      [class.new-record]="isNewRecord"
+    >
 
-      ¡Álbum completo!
-      ·
-      {{ attempts }} intentos
+      <span *ngIf="isNewRecord">
+
+        🏆 NUEVO RÉCORD
+        · {{ attempts }} INTENTOS
+
+      </span>
+
+
+      <span *ngIf="!isNewRecord">
+
+        ✦ ÁLBUM COMPLETO
+        · {{ attempts }} INTENTOS
+
+      </span>
 
     </div>
+
+
+    <!-- =========================
+         TABLERO 4 X 4
+         ========================= -->
 
     <div class="board">
 
       <button
+        type="button"
         class="card"
+
         *ngFor="let c of cards"
 
         [ngClass]="{
@@ -78,56 +155,193 @@
 
         [disabled]="boardLocked || c.matched"
 
-        (click)="onCardClick(c)">
+        (click)="onCardClick(c)"
+      >
+
+
+        <!-- =========================
+             REVERSO DE LA CARTA
+             ========================= -->
 
         <div class="face back">
 
-          <div class="crest-text">
-            MFC
+          <div class="card-metal-line top"></div>
+
+
+          <div class="back-decoration left"></div>
+
+          <div class="back-decoration right"></div>
+
+
+          <div class="back-stars">
+            ✦
           </div>
 
-          <img
-            class="crest-icon"
-            src="assets/imagenes/escudo.png"
-            alt="Millonarios FC">
 
-          <div class="foil-shine"></div>
+          <!-- ESCUDO -->
+
+          <div class="crest-panel">
+
+            <div class="crest-frame">
+
+              <div class="crest-star">
+                ★
+              </div>
+
+              <div class="crest-text">
+                MFC
+              </div>
+
+              <img
+                class="crest-icon"
+                src="assets/imagenes/escudo.png"
+                alt="Millonarios FC"
+              >
+
+            </div>
+
+          </div>
+
+
+          <!-- LINEAS -->
+
+          <div class="back-lines">
+
+            <span></span>
+
+            <span></span>
+
+            <span></span>
+
+          </div>
+
+
+          <!-- TEXTO -->
+
+          <div class="back-bottom">
+            MILLONARIOS
+          </div>
+
+
+          <div class="card-shine-back"></div>
 
         </div>
 
+
+        <!-- =========================
+             FRENTE DE LA CARTA
+             ========================= -->
+
         <div class="face front">
 
+          <div class="front-frame"></div>
+
+
+          <!-- LEYENDA -->
+
           <div class="legend-tag">
-            LEYENDA
-          </div>
 
-          <div class="player-photo-wrap">
+            <span class="legend-star">
+              ★
+            </span>
 
-            <img
-              class="player-img"
-              [src]="c.image"
-              alt="Jugador legendario">
+            <span class="legend-text">
+              LEYENDA
+            </span>
 
-          </div>
-
-          <div class="team-strip">
-
-            <img
-              class="crest-small"
-              src="assets/imagenes/escudo.png"
-              alt="Escudo">
-
-            <span class="team-name">
-              MILLONARIOS FC
+            <span class="legend-star">
+              ★
             </span>
 
           </div>
+
+
+          <!-- FOTO -->
+
+          <div class="player-photo-wrap">
+
+            <div class="photo-frame">
+
+              <img
+                class="player-img"
+
+                [src]="c.image"
+
+                alt="Jugador de Millonarios FC"
+              >
+
+            </div>
+
+          </div>
+
+
+          <!-- EQUIPO -->
+
+          <div class="team-strip">
+
+            <div class="team-logo">
+
+              <img
+                class="crest-small"
+
+                src="assets/imagenes/escudo.png"
+
+                alt="MFC"
+              >
+
+            </div>
+
+
+            <div class="team-info">
+
+              <span class="team-name">
+                MILLONARIOS FC
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="card-shine"></div>
 
         </div>
 
       </button>
 
     </div>
+
+
+    <!-- =========================
+         FOOTER
+         ========================= -->
+
+    <div class="collection-footer">
+
+      <div class="footer-line left"></div>
+
+      <span class="footer-star">
+        ★
+      </span>
+
+      <img
+        src="assets/imagenes/escudo.png"
+        alt="Millonarios FC"
+        class="footer-crest"
+      >
+
+      <span class="footer-name">
+        MILLONARIOS FC
+      </span>
+
+      <span class="footer-star">
+        ★
+      </span>
+
+      <div class="footer-line right"></div>
+
+    </div>
+
 
   </div>
 
