@@ -1241,6 +1241,14 @@ ion-toolbar {
 
   background:
 
+    repeating-linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.05) 0px,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+
     radial-gradient(
       ellipse at 50% 5%,
       rgba(255, 249, 187, 0.95),
@@ -1282,8 +1290,8 @@ ion-toolbar {
   inset: 3px;
 
   border:
-    1px solid
-    rgba(107, 65, 0, 0.55);
+    1.5px solid
+    rgba(107, 65, 0, 0.6);
 
   border-radius: 7px;
 
@@ -1303,25 +1311,93 @@ ion-toolbar {
 
   border:
     1px solid
-    rgba(255, 244, 170, 0.55);
+    rgba(255, 244, 170, 0.6);
 
   border-radius: 5px;
 }
 
 
 /* =========================================================
-   LEYENDA
+   ADORNOS DE ESQUINA
    ========================================================= */
 
-.legend-tag {
+.corner-ornament {
+
+  position: absolute;
+
+  z-index: 4;
+
+  width: 7px;
+
+  height: 7px;
+
+  transform:
+    rotate(45deg);
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #fff6d0,
+      var(--gold) 50%,
+      var(--gold-dark)
+    );
+
+  box-shadow:
+
+    0 0 3px
+    rgba(0, 0, 0, 0.5),
+
+    inset 0 0 0 1px
+    rgba(255, 255, 255, 0.5);
+}
+
+
+.corner-ornament.tl {
+
+  top: 3px;
+
+  left: 3px;
+}
+
+
+.corner-ornament.tr {
+
+  top: 3px;
+
+  right: 3px;
+}
+
+
+.corner-ornament.bl {
+
+  bottom: 3px;
+
+  left: 3px;
+}
+
+
+.corner-ornament.br {
+
+  bottom: 3px;
+
+  right: 3px;
+}
+
+
+/* =========================================================
+   CINTA LEYENDA (CON CORONA)
+   ========================================================= */
+
+.legend-ribbon {
 
   position: relative;
 
   z-index: 6;
 
-  width: 86%;
+  width: 92%;
 
-  min-height: 18px;
+  min-height: 17px;
 
   display: flex;
 
@@ -1329,11 +1405,11 @@ ion-toolbar {
 
   justify-content: center;
 
-  gap: 5px;
+  gap: 3px;
 
-  margin-bottom: 3px;
+  margin-bottom: 5px;
 
-  padding: 3px 5px;
+  padding: 3px 5px 2px;
 
   box-sizing: border-box;
 
@@ -1341,30 +1417,113 @@ ion-toolbar {
 
     linear-gradient(
       180deg,
-      #3764b0 0%,
-      #21478d 42%,
-      #0c2459 100%
+      #274a8f 0%,
+      #16316b 45%,
+      #0a1c45 100%
     );
+
+  border-top:
+    1px solid
+    rgba(255, 224, 130, 0.7);
+
+  border-bottom:
+    1px solid
+    rgba(255, 224, 130, 0.7);
 
   clip-path:
 
     polygon(
-      8px 0,
-      calc(100% - 8px) 0,
+      6% 0,
+      94% 0,
       100% 50%,
-      calc(100% - 8px) 100%,
-      8px 100%,
+      94% 100%,
+      6% 100%,
       0 50%
     );
 
   box-shadow:
 
     0 2px 5px
-    rgba(0, 0, 0, 0.5);
+    rgba(0, 0, 0, 0.55),
+
+    inset 0 1px 0
+    rgba(255, 255, 255, 0.12);
 }
 
 
-.legend-text {
+.legend-ribbon::before,
+.legend-ribbon::after {
+
+  content: "";
+
+  position: absolute;
+
+  bottom: -4px;
+
+  width: 0;
+
+  height: 0;
+
+  border-style: solid;
+}
+
+
+.legend-ribbon::before {
+
+  left: 1%;
+
+  border-width: 4px 4px 0 0;
+
+  border-color:
+    #071633
+    transparent
+    transparent
+    transparent;
+}
+
+
+.legend-ribbon::after {
+
+  right: 1%;
+
+  border-width: 4px 0 0 4px;
+
+  border-color:
+    #071633
+    transparent
+    transparent
+    transparent;
+}
+
+
+.ribbon-crown {
+
+  position: absolute;
+
+  top: -9px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  color: var(--gold-light);
+
+  font-size: 12px;
+
+  line-height: 1;
+
+  text-shadow:
+
+    0 0 4px
+    rgba(255, 220, 90, 0.7),
+
+    0 2px 3px
+    rgba(0, 0, 0, 0.7);
+}
+
+
+.ribbon-text {
 
   color: #ffe17a;
 
@@ -1377,7 +1536,7 @@ ion-toolbar {
 
   font-weight: 900;
 
-  letter-spacing: 1px;
+  letter-spacing: 1.6px;
 
   line-height: 1;
 
@@ -1385,19 +1544,6 @@ ion-toolbar {
 
     0 1px 2px
     rgba(0, 0, 0, 0.7);
-}
-
-
-.legend-star {
-
-  color: #ffe47d;
-
-  font-size: 7px;
-
-  text-shadow:
-
-    0 0 4px
-    rgba(255, 222, 91, 0.8);
 }
 
 
@@ -1452,6 +1598,74 @@ ion-toolbar {
   border:
     1px solid
     rgba(103, 61, 0, 0.8);
+}
+
+
+/* Chispas doradas sobre la foto */
+.photo-frame::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  opacity: 0.9;
+
+  background:
+
+    radial-gradient(
+      circle 1.3px
+      at 22% 14%,
+      #fff8e0,
+      transparent 100%
+    ),
+
+    radial-gradient(
+      circle 1px
+      at 68% 8%,
+      #fff8e0,
+      transparent 100%
+    ),
+
+    radial-gradient(
+      circle 1.5px
+      at 85% 24%,
+      #ffe9a3,
+      transparent 100%
+    ),
+
+    radial-gradient(
+      circle 1px
+      at 10% 34%,
+      #ffe9a3,
+      transparent 100%
+    ),
+
+    radial-gradient(
+      circle 1.1px
+      at 90% 48%,
+      #fff8e0,
+      transparent 100%
+    ),
+
+    radial-gradient(
+      circle 1px
+      at 32% 6%,
+      #ffe9a3,
+      transparent 100%
+    ),
+
+    radial-gradient(
+      ellipse 40% 22%
+      at 50% 3%,
+      rgba(255, 250, 220, 0.35),
+      transparent 70%
+    );
 }
 
 
@@ -1513,15 +1727,41 @@ ion-toolbar {
    PLACA DEL EQUIPO
    ========================================================= */
 
-.team-strip {
+/* =========================================================
+   PLACA INFERIOR: NOMBRE + LAUREL + ESCUDO
+   ========================================================= */
+
+.legend-plaque {
 
   position: relative;
 
   z-index: 6;
 
-  width: 94%;
+  flex-shrink: 0;
 
-  min-height: 17px;
+  width: 96%;
+
+  margin-top: 3px;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+}
+
+
+.plaque-name {
+
+  position: relative;
+
+  width: 100%;
+
+  min-height: 15px;
 
   display: flex;
 
@@ -1529,104 +1769,55 @@ ion-toolbar {
 
   justify-content: center;
 
-  gap: 4px;
-
-  margin-top: 3px;
-
-  padding: 2px 4px;
+  padding: 2px 6px 1px;
 
   box-sizing: border-box;
 
-  border:
-    1px solid
-    #dfb52c;
-
-  border-radius: 5px;
+  color: #ffe17a;
 
   background:
 
     linear-gradient(
       180deg,
-      #3b61a4 0%,
-      #1e3b79 35%,
-      #102653 65%,
-      #071633 100%
+      #274a8f 0%,
+      #16316b 45%,
+      #0a1c45 100%
+    );
+
+  border-top:
+    1px solid
+    rgba(255, 224, 130, 0.7);
+
+  border-bottom:
+    1px solid
+    rgba(255, 224, 130, 0.7);
+
+  clip-path:
+
+    polygon(
+      8% 0,
+      92% 0,
+      100% 50%,
+      92% 100%,
+      8% 100%,
+      0 50%
     );
 
   box-shadow:
 
-    inset 0 1px 0
-    rgba(255, 255, 255, 0.2),
-
-    inset 0 -3px 6px
-    rgba(0, 0, 0, 0.32),
-
-    0 2px 4px
-    rgba(0, 0, 0, 0.45);
-
-  overflow: hidden;
-}
-
-
-.team-logo {
-
-  width: 13px;
-
-  height: 13px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  flex-shrink: 0;
-}
-
-
-.crest-small {
-
-  width: 10px;
-
-  height: 10px;
-
-  object-fit: contain;
-
-  filter:
-
-    drop-shadow(
-      0 1px 2px
-      rgba(0, 0, 0, 0.7)
-    );
-}
-
-
-.team-info {
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  line-height: 1;
-}
-
-
-.team-name {
-
-  color: #ffffff;
+    0 2px 5px
+    rgba(0, 0, 0, 0.5);
 
   font-size:
     clamp(
       6px,
-      1.7vw,
-      9px
+      1.6vw,
+      8px
     );
 
   font-weight: 900;
 
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
 
   line-height: 1;
 
@@ -1635,38 +1826,206 @@ ion-toolbar {
   text-shadow:
 
     0 1px 2px
-    rgba(0, 0, 0, 0.8);
+    rgba(0, 0, 0, 0.7);
 }
 
 
-/* =========================================================
-   BRILLO
-   ========================================================= */
-
-.team-strip::before {
+.plaque-name::before,
+.plaque-name::after {
 
   content: "";
 
   position: absolute;
 
-  top: 1px;
+  bottom: -4px;
 
-  left: 12%;
+  width: 0;
 
-  width: 76%;
+  height: 0;
 
-  height: 1px;
+  border-style: solid;
+}
+
+
+.plaque-name::before {
+
+  left: 3%;
+
+  border-width: 4px 4px 0 0;
+
+  border-color:
+    #071633
+    transparent
+    transparent
+    transparent;
+}
+
+
+.plaque-name::after {
+
+  right: 3%;
+
+  border-width: 4px 0 0 4px;
+
+  border-color:
+    #071633
+    transparent
+    transparent
+    transparent;
+}
+
+
+.plaque-crest-row {
+
+  position: relative;
+
+  z-index: 8;
+
+  margin-top: -7px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 4px;
+}
+
+
+.plaque-crest {
+
+  position: relative;
+
+  z-index: 8;
+
+  flex-shrink: 0;
+
+  width: 26px;
+
+  height: 26px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+.plaque-crest img {
+
+  width: 26px;
+
+  height: 26px;
+
+  object-fit: contain;
+
+  filter:
+
+    drop-shadow(
+      0 2px 3px
+      rgba(0, 0, 0, 0.7)
+    )
+
+    drop-shadow(
+      0 0 3px
+      rgba(0, 0, 0, 0.5)
+    );
+}
+
+
+/* =========================================================
+   LAUREL DORADO (APROXIMACIÓN CSS)
+   ========================================================= */
+
+.laurel {
+
+  position: relative;
+
+  flex-shrink: 0;
+
+  width: 20px;
+
+  height: 20px;
+}
+
+
+.laurel::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 1px;
+
+  border-radius: 50%;
+
+  border: 1.5px solid transparent;
+
+  border-left-color: var(--gold);
+
+  border-bottom-color: var(--gold);
+
+  transform: rotate(10deg);
+
+  opacity: 0.9;
+}
+
+
+.laurel::after {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.95;
 
   background:
 
-    linear-gradient(
-      90deg,
-      transparent,
-      #ffe98a,
-      transparent
-    );
+    radial-gradient(
+      ellipse 2.6px 2px
+      at 3px 17px,
+      var(--gold-light),
+      transparent 75%
+    ),
 
-  opacity: 0.85;
+    radial-gradient(
+      ellipse 2.8px 2.1px
+      at 1px 12px,
+      var(--gold-light),
+      transparent 75%
+    ),
+
+    radial-gradient(
+      ellipse 2.8px 2.1px
+      at 2px 7px,
+      var(--gold),
+      transparent 75%
+    ),
+
+    radial-gradient(
+      ellipse 2.6px 2px
+      at 6px 3px,
+      var(--gold),
+      transparent 75%
+    ),
+
+    radial-gradient(
+      ellipse 2.4px 1.8px
+      at 11px 0.5px,
+      var(--gold-dark),
+      transparent 75%
+    );
+}
+
+
+.laurel-right {
+
+  transform:
+    scaleX(-1);
 }
 
 
@@ -1685,6 +2044,24 @@ ion-toolbar {
 
   transform:
     rotateY(0deg);
+}
+
+
+.card.revealed {
+
+  border-color:
+    #ffe477;
+
+  box-shadow:
+
+    0 0 10px 2px
+    rgba(255, 224, 130, 0.65),
+
+    0 0 26px 6px
+    rgba(255, 200, 60, 0.4),
+
+    0 0 46px 14px
+    rgba(140, 180, 255, 0.18);
 }
 
 
@@ -2038,64 +2415,65 @@ ion-content::part(scroll) {
      FRENTE
      --------------------------------- */
 
-  .legend-tag {
+  .legend-ribbon {
 
     min-height: 14px;
 
-    padding: 2px 4px;
-
-    gap: 3px;
+    padding: 2px 4px 1px;
 
     margin-bottom: 2px;
   }
 
 
-  .legend-text {
+  .ribbon-crown {
+
+    top: -7px;
+
+    font-size: 10px;
+  }
+
+
+  .ribbon-text {
 
     font-size: 6px;
   }
 
 
-  .legend-star {
-
-    font-size: 5px;
-  }
-
-
-  .team-strip {
-
-    min-height: 14px;
+  .legend-plaque {
 
     margin-top: 2px;
 
-    gap: 2px;
-
-    padding:
-      1px 3px;
+    padding: 3px 3px 4px;
   }
 
 
-  .team-logo {
+  .plaque-name {
 
-    width: 9px;
-
-    height: 9px;
+    font-size: 6px;
   }
 
 
-  .crest-small {
+  .plaque-crest {
 
-    width: 8px;
+    width: 20px;
 
-    height: 8px;
+    height: 20px;
   }
 
 
-  .team-name {
+  .plaque-crest img {
 
-    font-size: 5px;
+    width: 20px;
 
-    letter-spacing: 0.3px;
+    height: 20px;
+  }
+
+
+  .laurel {
+
+    width: 16px;
+
+    height: 16px;
   }
 
 
@@ -2125,16 +2503,169 @@ ion-content::part(scroll) {
 
 
 /* =========================================================
-   REDUCIR ANIMACIONES
+   PANTALLAS ANGOSTAS (CELULAR)
    ========================================================= */
+
+@media (max-width: 420px) {
+
+  .plaque-crest {
+
+    width: 24px;
+
+    height: 24px;
+  }
+
+
+  .plaque-crest img {
+
+    width: 24px;
+
+    height: 24px;
+  }
+
+
+  .laurel {
+
+    width: 18px;
+
+    height: 18px;
+  }
+}
+
+
+@media (max-width: 340px) {
+
+  .plaque-crest {
+
+    width: 21px;
+
+    height: 21px;
+  }
+
+
+  .plaque-crest img {
+
+    width: 21px;
+
+    height: 21px;
+  }
+
+
+  .laurel {
+
+    width: 15px;
+
+    height: 15px;
+  }
+}
+
+
+/* =========================================================
+   BRILLO AL VOLTEAR (REFLEJO DE LUZ)
+   ========================================================= */
+
+.card-shine,
+.card-shine-back {
+
+  position: absolute;
+
+  top: -40%;
+
+  left: -70%;
+
+  width: 55%;
+
+  height: 220%;
+
+  transform:
+    rotate(25deg)
+    translateX(-160%);
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  z-index: 25;
+}
+
+
+.card-shine {
+
+  background:
+
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 224, 140, 0.75),
+      rgba(255, 255, 255, 0.55),
+      transparent
+    );
+}
+
+
+.card-shine-back {
+
+  background:
+
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.35),
+      rgba(206, 224, 255, 0.55),
+      rgba(255, 255, 255, 0.35),
+      transparent
+    );
+}
+
+
+.card.revealed .card-shine {
+
+  animation:
+    shine-sweep 0.8s ease-out;
+}
+
+
+.card:not(.revealed) .card-shine-back {
+
+  animation:
+    shine-sweep 0.8s ease-out;
+}
+
+
+@keyframes shine-sweep {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      rotate(25deg)
+      translateX(-160%);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  55% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      rotate(25deg)
+      translateX(220%);
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
 
   .face,
   .card,
   .card-shine,
-  .card-shine-back,
-  .team-strip::after {
+  .card-shine-back {
 
     animation: none !important;
 
