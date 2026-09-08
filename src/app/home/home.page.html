@@ -1,239 +1,109 @@
 <ion-header class="ion-no-border">
-
   <ion-toolbar>
-
     <div class="brand">
-
-      <div class="brand-crown">
-        ♛
+      <div class="brand-crest-wrap">
+        <span class="brand-crest-line left"></span>
+        <img class="brand-crest" src="assets/imagenes/escudo.png" alt="Millonarios FC" />
+        <span class="brand-crest-line right"></span>
       </div>
 
-      <div class="brand-title">
-        MEMORIZA
-      </div>
-
-      <div class="brand-stars">
-        <span>✦</span>
-        <span>✦</span>
-      </div>
-
-      <div class="brand-line"></div>
-
-      <div class="brand-shield">
-        M
-      </div>
-
+      <div class="brand-title">MEMORIZA</div>
     </div>
-
   </ion-toolbar>
-
 </ion-header>
 
-
 <ion-content class="game-content">
-
   <div class="game-wrapper">
-
-
-    <!-- =========================
-         MARCADOR
-         ========================= -->
-
     <div class="scoreboard">
+      <button class="history-btn" type="button" aria-label="Ver historial" (click)="openHistory()">
+        <span class="history-icon"> ☰ </span>
+      </button>
 
       <div class="score-slot">
-
-        <span class="score-label">
-          PARES
-        </span>
+        <span class="score-label"> PARES </span>
 
         <span class="score-value">
-
           {{ matches }}
 
-          <small>
-            / {{ pairs }}
-          </small>
-
+          <small> / {{ pairs }} </small>
         </span>
-
       </div>
-
 
       <div class="score-divider"></div>
 
-
       <div class="score-slot">
-
-        <span class="score-label">
-          INTENTOS
-        </span>
+        <span class="score-label"> INTENTOS </span>
 
         <span class="score-value">
           {{ attempts }}
         </span>
-
       </div>
-
 
       <div class="score-divider"></div>
 
-
       <div class="score-slot">
-
-        <span class="score-label">
-          MEJOR
-        </span>
+        <span class="score-label"> MEJOR </span>
 
         <span class="score-value">
-          {{ bestAtems > 0 ? bestAtems : '—' }}
+          {{ bestAtems > 0 ? bestAtems : "—" }}
         </span>
-
       </div>
 
-
-      <button
-        class="restart-btn"
-        type="button"
-        aria-label="Nueva partida"
-        (click)="newGame()"
-      >
-
-        <span class="restart-icon">
-          ↻
-        </span>
-
+      <button class="restart-btn" type="button" aria-label="Nueva partida" (click)="newGame()">
+        <span class="restart-icon"> ↻ </span>
       </button>
-
     </div>
 
+    <div class="message" *ngIf="finished" [class.new-record]="isNewRecord">
+      <span *ngIf="isNewRecord"> 🏆 NUEVO RÉCORD · {{ attempts }} INTENTOS </span>
 
-    <!-- =========================
-         MENSAJE FINAL
-         ========================= -->
-
-    <div
-      class="message"
-      *ngIf="finished"
-      [class.new-record]="isNewRecord"
-    >
-
-      <span *ngIf="isNewRecord">
-
-        🏆 NUEVO RÉCORD
-        · {{ attempts }} INTENTOS
-
-      </span>
-
-
-      <span *ngIf="!isNewRecord">
-
-        ✦ ÁLBUM COMPLETO
-        · {{ attempts }} INTENTOS
-
-      </span>
-
+      <span *ngIf="!isNewRecord"> ✦ ÁLBUM COMPLETO · {{ attempts }} INTENTOS </span>
     </div>
-
-
-    <!-- =========================
-         TABLERO 4 X 4
-         ========================= -->
 
     <div class="board">
-
       <button
         type="button"
         class="card"
-
-        *ngFor="let c of cards"
-
+        *ngFor="let c of cards; let i = index"
         [ngClass]="{
-          'revealed': c.revealed || c.matched,
-          'matched': c.matched
+          revealed: c.revealed || c.matched,
+          matched: c.matched,
         }"
-
+        [style.animation-delay.ms]="i * 25"
         [disabled]="boardLocked || c.matched"
-
         (click)="onCardClick(c)"
       >
-
-
-        <!-- =========================
-             REVERSO DE LA CARTA
-             ========================= -->
-
         <div class="face back">
-
           <div class="card-metal-line top"></div>
-
 
           <div class="back-decoration left"></div>
 
           <div class="back-decoration right"></div>
 
-
-          <div class="back-stars">
-            ✦
-          </div>
-
-
-          <!-- ESCUDO -->
-
           <div class="crest-panel">
-
             <div class="crest-frame">
+              <div class="crest-star">★</div>
 
-              <div class="crest-star">
-                ★
-              </div>
+              <div class="crest-text">MFC</div>
 
-              <div class="crest-text">
-                MFC
-              </div>
-
-              <img
-                class="crest-icon"
-                src="assets/imagenes/escudo.png"
-                alt="Millonarios FC"
-              >
-
+              <img class="crest-icon" src="assets/imagenes/escudo.png" alt="Millonarios FC" />
             </div>
-
           </div>
-
-
-          <!-- LINEAS -->
 
           <div class="back-lines">
-
             <span></span>
 
             <span></span>
 
             <span></span>
-
           </div>
 
-
-          <!-- TEXTO -->
-
-          <div class="back-bottom">
-            MILLONARIOS
-          </div>
-
+          <div class="back-bottom">MILLONARIOS</div>
 
           <div class="card-shine-back"></div>
-
         </div>
 
-
-        <!-- =========================
-             FRENTE DE LA CARTA
-             ========================= -->
-
         <div class="face front">
-
           <div class="front-frame"></div>
 
           <div class="corner-ornament tl"></div>
@@ -241,110 +111,136 @@
           <div class="corner-ornament bl"></div>
           <div class="corner-ornament br"></div>
 
-
-          <!-- CINTA LEYENDA -->
-
           <div class="legend-ribbon">
+            <span class="ribbon-crown"> ♛ </span>
 
-            <span class="ribbon-crown">
-              ♛
-            </span>
-
-            <span class="ribbon-text">
-              LEYENDA
-            </span>
-
+            <span class="ribbon-text"> LEYENDA </span>
           </div>
-
-
-          <!-- FOTO -->
 
           <div class="player-photo-wrap">
-
             <div class="photo-frame">
-
-              <img
-                class="player-img"
-
-                [src]="c.image"
-
-                alt="Jugador de Millonarios FC"
-              >
-
+              <img class="player-img" [src]="c.image" alt="Jugador de Millonarios FC" />
             </div>
-
           </div>
 
-
-          <!-- PLACA INFERIOR -->
-
           <div class="legend-plaque">
-
-            <div class="plaque-name">
-              MILLONARIOS FC
-            </div>
+            <div class="plaque-name">MILLONARIOS FC</div>
 
             <div class="plaque-crest-row">
-
               <span class="laurel laurel-left"></span>
 
               <div class="plaque-crest">
-
-                <img
-                  src="assets/imagenes/escudo.png"
-
-                  alt="Millonarios FC"
-                >
-
+                <img src="assets/imagenes/escudo.png" alt="Millonarios FC" />
               </div>
 
               <span class="laurel laurel-right"></span>
-
             </div>
-
           </div>
 
-
           <div class="card-shine"></div>
-
         </div>
-
       </button>
-
     </div>
-
-
-    <!-- =========================
-         FOOTER
-         ========================= -->
 
     <div class="collection-footer">
-
       <div class="footer-line left"></div>
 
-      <span class="footer-star">
-        ★
-      </span>
+      <span class="footer-star"> ★ </span>
 
-      <img
-        src="assets/imagenes/escudo.png"
-        alt="Millonarios FC"
-        class="footer-crest"
-      >
+      <img src="assets/imagenes/escudo.png" alt="Millonarios FC" class="footer-crest" />
 
-      <span class="footer-name">
-        MILLONARIOS FC
-      </span>
+      <span class="footer-name"> MILLONARIOS FC </span>
 
-      <span class="footer-star">
-        ★
-      </span>
+      <span class="footer-star"> ★ </span>
 
       <div class="footer-line right"></div>
-
     </div>
-
-
   </div>
 
+  <div class="history-overlay" *ngIf="isHistoryOpen">
+    <div class="history-backdrop" (click)="closeHistory()"></div>
+
+    <div class="history-sheet">
+      <div class="history-sheet-header">
+        <span class="history-sheet-title">HISTORIAL</span>
+
+        <button
+          type="button"
+          class="modal-close-btn"
+          aria-label="Cerrar historial"
+          (click)="closeHistory()"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="history-sheet-body">
+        <div class="empty-state" *ngIf="history.length === 0">
+          <div class="empty-icon">🗒️</div>
+
+          <p>
+            Aún no hay partidas guardadas.
+            <br />
+            Juega una partida para empezar tu historial.
+          </p>
+        </div>
+
+        <div class="history-list" *ngIf="history.length > 0">
+          <div class="history-item" *ngFor="let h of history" [class.record]="h.record">
+            <div class="history-icon" [class.record]="h.record">🏆</div>
+
+            <div class="history-info">
+              <div class="history-attempts">{{ h.atems }} intentos</div>
+
+              <div class="history-player" *ngIf="h.name">
+                {{ h.name }}
+              </div>
+
+              <div class="history-date">
+                {{ formatDate(h.date) }}
+              </div>
+            </div>
+
+            <div class="history-badge" *ngIf="h.record">RÉCORD</div>
+          </div>
+        </div>
+
+        <button class="clear-btn" type="button" *ngIf="history.length > 0" (click)="clearHistory()">
+          Borrar historial
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="confetti" *ngIf="isNameEntryOpen">
+    <span *ngFor="let n of confettiPieces"></span>
+  </div>
+
+  <div class="name-overlay" *ngIf="isNameEntryOpen">
+    <div class="name-backdrop"></div>
+
+    <div class="name-card">
+      <div class="name-card-icon">🏆</div>
+
+      <div class="name-card-title">
+        {{ pendingRecord ? "¡NUEVO RÉCORD!" : "¡ÁLBUM COMPLETO!" }}
+      </div>
+
+      <div class="name-card-subtitle">{{ attempts }} intentos</div>
+
+      <input
+        type="text"
+        class="name-input"
+        placeholder="Tu nombre"
+        maxlength="24"
+        autofocus
+        [(ngModel)]="playerName"
+        (keyup.enter)="confirmPlayerName()"
+      />
+
+      <button type="button" class="name-save-btn" (click)="confirmPlayerName()">
+        Guardar partida
+      </button>
+    </div>
+  </div>
 </ion-content>

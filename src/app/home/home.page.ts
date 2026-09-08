@@ -1,10 +1,5 @@
-import {
-  Component,
-  NgZone,
-  ChangeDetectorRef
-} from '@angular/core';
-
-import { StorageService } from '../service/storage.service';
+import { Component, NgZone, ChangeDetectorRef } from '@angular/core';
+import { PartidaHistorial, StorageService } from '../service/storage.service';
 
 type Card = {
   id: number;
@@ -36,18 +31,22 @@ export class HomePage {
   ];
 
   cards: Card[] = [];
-
   firstPick: Card | null = null;
   secondPick: Card | null = null;
-
   boardLocked = false;
 
   attempts = 0;
   matches = 0;
-
   bestAtems = 0;
-
   isNewRecord = false;
+
+  history: PartidaHistorial[] = [];
+  isHistoryOpen = false;
+
+  playerName = '';
+  isNameEntryOpen = false;
+  pendingRecord = false;
+  confettiPieces = new Array(24);
 
   constructor(
     private zone: NgZone,
@@ -56,109 +55,48 @@ export class HomePage {
   ) {}
 
   async ngOnInit() {
-
     this.newGame();
 
     try {
-
       await this.storageService.init();
-
-      this.bestAtems =
-        await this.storageService.getBestAtems();
-
+      this.bestAtems = await this.storageService.getBestAtems();
+      this.playerName = await this.storageService.getPlayerName();
       this.cdRef.detectChanges();
-
     } catch (error) {
-
-      console.error(
-        'Error inicializando Storage:',
-        error
-      );
-
+      console.error('Error inicializando Storage:', error);
       this.bestAtems = 0;
     }
   }
 
   newGame() {
-
     this.attempts = 0;
     this.matches = 0;
-
     this.firstPick = null;
     this.secondPick = null;
-
     this.boardLocked = false;
-
     this.isNewRecord = false;
 
-    const selected =
-      this.players.slice(0, this.pairs);
+    const selected = this.players.slice(0, this.pairs);
 
-    const deck: Card[] =
-      selected.flatMap<Card>((img, i) => [
+    const deck: Card[] = selected.flatMap<Card>((img, i) => [
+      { id: i * 2, key: 'k' + i, image: img, revealed: false, matched: false },
+      { id: i * 2 + 1, key: 'k' + i, image: img, revealed: false, matched: false }
+    ]);
 
-        {
-          id: i * 2,
-          key: 'k' + i,
-          image: img,
-          revealed: false,
-          matched: false
-        },
-
-        {
-          id: i * 2 + 1,
-          key: 'k' + i,
-          image: img,
-          revealed: false,
-          matched: false
-        }
-
-      ]);
-
-    for (
-      let i = deck.length - 1;
-      i > 0;
-      i--
-    ) {
-
-      const j =
-        Math.floor(
-          Math.random() * (i + 1)
-        );
-
-      [deck[i], deck[j]] =
-        [deck[j], deck[i]];
+    for (let i = deck.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [deck[i], deck[j]] = [deck[j], deck[i]];
     }
 
     this.cards = deck;
-
     this.cdRef.detectChanges();
   }
 
   onCardClick(card: Card) {
-
-    /*
-     * IMPORTANTE:
-     *
-     * Mientras estamos esperando los 800 ms
-     * NO permitimos otra carta.
-     *
-     * Esto significa:
-     *
-     * carta 1 -> carta 2 -> comprobar -> ocultar
-     *
-     * Nunca:
-     *
-     * carta 1 -> carta 2 -> carta 3
-     */
     if (this.boardLocked) {
       return;
     }
 
-    // Guarda extra: si ya hay dos cartas seleccionadas
-    // (procesándose), nunca se acepta una tercera,
-    // incluso si boardLocked no se hubiera actualizado
-    // todavía en la vista.
     if (this.firstPick && this.secondPick) {
       return;
     }
@@ -167,153 +105,145 @@ export class HomePage {
       return;
     }
 
-    // ==========================================
-    // PRIMERA CARTA
-    // ==========================================
-
     if (!this.firstPick) {
-
       card.revealed = true;
-
       this.firstPick = card;
-
       this.cdRef.detectChanges();
-
       return;
     }
 
-    // Evita procesar la misma carta como
-    // primera y segunda selección.
     if (card.id === this.firstPick.id) {
       return;
     }
 
-    // ==========================================
-    // SEGUNDA CARTA
-    // ==========================================
-
     card.revealed = true;
-
     this.secondPick = card;
-
     this.attempts++;
 
     const firstCard = this.firstPick;
     const secondCard = this.secondPick;
 
-    /*
-     * DESDE ESTE MOMENTO EL TABLERO SE BLOQUEA.
-     *
-     * El usuario NO podrá tocar una tercera carta.
-     */
     this.boardLocked = true;
-
     this.cdRef.detectChanges();
 
-    // ==========================================
-    // COMPROBAR PAREJA
-    // ==========================================
-
-    const match =
-      firstCard.key === secondCard.key;
+    const match = firstCard.key === secondCard.key;
 
     if (match) {
-
-      // Las dos quedan permanentemente visibles
       firstCard.matched = true;
       secondCard.matched = true;
-
       this.matches++;
-
-      // Limpiar selección
       this.firstPick = null;
       this.secondPick = null;
-
-      // Desbloquear inmediatamente
       this.boardLocked = false;
-
       this.cdRef.detectChanges();
 
-      // Comprobar victoria
       if (this.finished) {
-        this.onGameFinish();
+        this.promptPlayerName();
       }
 
       return;
     }
 
-    // ==========================================
-    // NO SON PAREJA
-    // ==========================================
-
-    /*
-     * AQUÍ ESTÁ LA PARTE IMPORTANTE.
-     *
-     * No esperamos otro click.
-     *
-     * Las dos cartas se ocultan AUTOMÁTICAMENTE
-     * después de 800 ms, sin depender de una
-     * tercera interacción del usuario.
-     */
     setTimeout(() => {
-
       this.zone.run(() => {
-
         firstCard.revealed = false;
         secondCard.revealed = false;
-
         this.firstPick = null;
         this.secondPick = null;
-
         this.boardLocked = false;
-
         this.cdRef.detectChanges();
-
       });
-
     }, 800);
   }
 
-  private async onGameFinish() {
+  promptPlayerName() {
+    this.pendingRecord = this.bestAtems === 0 || this.attempts < this.bestAtems;
+    this.isNameEntryOpen = true;
+    this.cdRef.detectChanges();
+  }
+
+  async confirmPlayerName() {
+    const name = (this.playerName || '').trim() || 'Jugador';
+    this.playerName = name;
+    this.isNameEntryOpen = false;
+    this.cdRef.detectChanges();
 
     try {
+      await this.storageService.setPlayerName(name);
+    } catch (error) {
+      console.error('Error guardando nombre:', error);
+    }
+
+    await this.onGameFinish(name);
+  }
+
+  private async onGameFinish(name: string) {
+    try {
+      const isRecord = await this.storageService.saveAtems(this.attempts);
 
       await this.storageService.saveHistory({
-
         date: new Date().toString(),
-
         atems: this.attempts,
-
-        win: true
-
+        win: true,
+        record: isRecord,
+        name
       });
 
-      const isRecord =
-        await this.storageService.saveAtems(
-          this.attempts
-        );
-
       if (isRecord) {
-
-        this.bestAtems =
-          this.attempts;
-
+        this.bestAtems = this.attempts;
         this.isNewRecord = true;
-
         this.cdRef.detectChanges();
       }
-
     } catch (error) {
-
-      console.error(
-        'Error guardando partida:',
-        error
-      );
+      console.error('Error guardando partida:', error);
     }
   }
 
   get finished() {
-
     return this.matches === this.pairs;
+  }
+
+  async openHistory() {
+    try {
+      const history = await this.storageService.getHistory();
+      this.history = history.slice().reverse();
+    } catch (error) {
+      console.error('Error cargando historial:', error);
+      this.history = [];
+    }
+
+    this.isHistoryOpen = true;
+    this.cdRef.detectChanges();
+  }
+
+  closeHistory() {
+    this.isHistoryOpen = false;
+  }
+
+  async clearHistory() {
+    await this.storageService.clearHistory();
+    this.history = [];
+    this.cdRef.detectChanges();
+  }
+
+  formatDate(value: string): string {
+    const date = new Date(value);
+
+    if (isNaN(date.getTime())) {
+      return value;
+    }
+
+    const day = date.toLocaleDateString('es-CO', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    });
+
+    const time = date.toLocaleTimeString('es-CO', {
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+
+    return `${day} · ${time}`;
   }
 }

@@ -1,830 +1,916 @@
-/* =========================================================
-   MEMORIZA
-   BLUE METALLIC + GOLD
-   ========================================================= */
-
 :host {
-
   --navy-0: #020817;
   --navy-1: #06132f;
   --navy-2: #0a1d45;
   --navy-3: #12316b;
-
   --gold-dark: #8a5e08;
   --gold: #d6a51d;
   --gold-light: #ffe27a;
   --gold-white: #fff4b0;
 }
 
-
-/* =========================================================
-   FONDO
-   ========================================================= */
-
 .game-content {
-
   --background: #020817;
-
   --overflow: hidden;
-
   background:
-
-    radial-gradient(
-      ellipse at 50% -10%,
-      rgba(37, 77, 157, 0.45),
-      transparent 48%
-    ),
-
-    radial-gradient(
-      ellipse at 0% 60%,
-      rgba(15, 48, 111, 0.22),
-      transparent 40%
-    ),
-
-    radial-gradient(
-      ellipse at 100% 70%,
-      rgba(17, 50, 112, 0.20),
-      transparent 42%
-    ),
-
-    linear-gradient(
-      180deg,
-      #020817 0%,
-      #06132e 48%,
-      #020817 100%
-    );
+    radial-gradient(ellipse at 50% -10%, rgba(37, 77, 157, 0.45), transparent 48%),
+    radial-gradient(ellipse at 0% 60%, rgba(15, 48, 111, 0.22), transparent 40%),
+    radial-gradient(ellipse at 100% 70%, rgba(17, 50, 112, 0.2), transparent 42%),
+    linear-gradient(180deg, #020817 0%, #06132e 48%, #020817 100%);
 }
-
 
 .game-content::before {
-
   content: "";
-
   position: absolute;
-
   inset: 0;
-
   pointer-events: none;
-
   opacity: 0.2;
-
-  background:
-
-    repeating-linear-gradient(
-      135deg,
-      transparent 0,
-      transparent 18px,
-      rgba(255, 255, 255, 0.018) 19px,
-      transparent 20px
-    );
+  background: repeating-linear-gradient(
+    135deg,
+    transparent 0,
+    transparent 18px,
+    rgba(255, 255, 255, 0.018) 19px,
+    transparent 20px
+  );
 }
-
-
-/* =========================================================
-   HEADER
-   ========================================================= */
 
 ion-header {
-
   background: #020817 !important;
-
   --background: #020817;
-
-  padding-top:
-    env(safe-area-inset-top);
-
+  padding-top: env(safe-area-inset-top);
   box-sizing: border-box;
 }
-
 
 ion-toolbar {
-
   --background: #020817 !important;
-
   --border-width: 0;
-
-  height: 52px;
-
-  min-height: 52px;
-
+  height: 55px;
+  min-height: 55px;
   padding: 0;
-
   position: relative;
-
   display: flex;
-
   justify-content: center;
-
   box-sizing: border-box;
 }
-
-
-/* =========================================================
-   MARCA
-   ========================================================= */
 
 .brand {
-
   position: relative;
-
   width: 100%;
-
   height: 100%;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   flex-direction: column;
-
   padding: 0;
-
   box-sizing: border-box;
 }
 
-
-/* =========================================================
-   CORONA
-   ========================================================= */
-
-.brand-crown {
-
-  position: absolute;
-
-  top: -2px;
-
-  left: 50%;
-
-  transform:
-    translateX(-50%);
-
-  color: var(--gold-light);
-
-  font-size: 17px;
-
-  line-height: 1;
-
-  text-shadow:
-
-    0 0 4px
-    rgba(255, 220, 90, 0.6),
-
-    0 2px 5px
-    rgba(0, 0, 0, 0.8);
+.brand-crest-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 5px;
 }
 
+.brand-crest {
+  width: 21px;
+  height: 21px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.65));
+}
 
-/* =========================================================
-   TITULO
-   ========================================================= */
+.brand-crest-line {
+  width: 38px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dark), var(--gold-light));
+}
+
+.brand-crest-line.right {
+  background: linear-gradient(90deg, var(--gold-light), var(--gold-dark), transparent);
+}
 
 .brand-title {
-
-  margin-top: 8px;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size: 25px;
-
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 26px;
   font-weight: 900;
-
   letter-spacing: 3.5px;
-
   line-height: 1;
-
-  color: var(--gold-light);
-
-  text-shadow:
-
-    0 1px 0 #fff6c0,
-
-    0 2px 0 #bd850c,
-
-    0 4px 7px
-    rgba(0, 0, 0, 0.8),
-
-    0 0 10px
-    rgba(255, 208, 54, 0.2);
+  background: linear-gradient(180deg, #fff8d6 0%, #ffe27a 30%, #d6a51d 58%, #ffec9e 78%, #fff8d6 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 1px rgba(120, 76, 6, 0.85)) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.75));
 }
-
-
-/* =========================================================
-   ESTRELLAS
-   ========================================================= */
-
-.brand-stars {
-
-  position: absolute;
-
-  top: 29px;
-
-  left: 50%;
-
-  width: 100%;
-
-  transform:
-    translateX(-50%);
-
-  display: flex;
-
-  justify-content: space-between;
-
-  padding:
-    0 27px;
-
-  box-sizing: border-box;
-
-  pointer-events: none;
-}
-
-
-.brand-stars span {
-
-  color: var(--gold);
-
-  font-size: 8px;
-
-  text-shadow:
-
-    0 0 5px
-    rgba(255, 214, 71, 0.45);
-}
-
-
-/* =========================================================
-   LINEA
-   ========================================================= */
-
-.brand-line {
-
-  position: absolute;
-
-  bottom: 3px;
-
-  left: 16%;
-
-  width: 68%;
-
-  height: 1px;
-
-  background:
-
-    linear-gradient(
-      90deg,
-      transparent,
-      var(--gold-dark),
-      var(--gold-light),
-      var(--gold-dark),
-      transparent
-    );
-}
-
-
-/* =========================================================
-   ESCUDO HEADER
-   ========================================================= */
-
-.brand-shield {
-
-  position: absolute;
-
-  bottom: -5px;
-
-  left: 50%;
-
-  transform:
-    translateX(-50%);
-
-  width: 20px;
-
-  height: 24px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      #315ba4,
-      #10285d 55%,
-      #071633
-    );
-
-  clip-path:
-
-    polygon(
-      0 0,
-      100% 0,
-      100% 70%,
-      50% 100%,
-      0 70%
-    );
-
-  color: var(--gold-light);
-
-  font-family:
-    Georgia,
-    serif;
-
-  font-size: 10px;
-
-  font-weight: 900;
-
-  z-index: 5;
-}
-
-
-/* =========================================================
-   CONTENEDOR
-   ========================================================= */
 
 .game-wrapper {
-
   position: relative;
-
   width: 100%;
-
   height: 100%;
-
   min-height: 0;
-
   display: flex;
-
   flex-direction: column;
-
-  padding:
-    2px 10px 1px;
-
+  padding: 0 10px 1px;
   box-sizing: border-box;
-
   overflow: hidden;
 }
 
-
-/* =========================================================
-   MARCADOR
-   ========================================================= */
-
 .scoreboard {
-
   position: relative;
-
   flex-shrink: 0;
-
   width: 100%;
-
   height: 46px;
-
   display: flex;
-
   align-items: center;
-
-  margin-bottom: 3px;
-
-  padding:
-    2px 45px 2px 7px;
-
+  margin-bottom: 11px;
+  padding: 2px 45px;
   box-sizing: border-box;
-
   border-radius: 11px;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      #173c83 0%,
-      #102b63 28%,
-      #091b42 63%,
-      #06122e 100%
-    );
-
-  border:
-    1px solid
-    rgba(226, 181, 40, 0.82);
-
+  background: linear-gradient(145deg, #173c83 0%, #102b63 28%, #091b42 63%, #06122e 100%);
+  border: 1px solid rgba(226, 181, 40, 0.82);
   box-shadow:
-
-    inset 0 1px 0
-    rgba(255, 255, 255, 0.18),
-
-    inset 0 -8px 18px
-    rgba(0, 0, 0, 0.25),
-
-    0 4px 11px
-    rgba(0, 0, 0, 0.42);
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -8px 18px rgba(0, 0, 0, 0.25),
+    0 4px 11px rgba(0, 0, 0, 0.42);
 }
 
-
 .scoreboard::after {
-
   content: "";
-
   position: absolute;
-
   inset: 3px;
-
   border-radius: 8px;
-
-  border:
-    1px solid
-    rgba(255, 219, 89, 0.13);
-
+  border: 1px solid rgba(255, 219, 89, 0.13);
   pointer-events: none;
 }
 
-
-/* =========================================================
-   SCORE
-   ========================================================= */
-
 .score-slot {
-
   flex: 1;
-
   height: 100%;
-
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   justify-content: center;
 }
 
-
 .score-label {
-
   font-size: 7px;
-
   font-weight: 800;
-
   letter-spacing: 1.1px;
-
   color: #c2cde4;
-
   line-height: 1;
-
   margin-bottom: 2px;
 }
 
-
 .score-value {
-
   font-size: 18px;
-
   font-weight: 900;
-
   line-height: 1;
-
   color: var(--gold-light);
-
   text-shadow:
-
     0 1px 0 #fff1a0,
-
-    0 2px 4px
-    rgba(0, 0, 0, 0.55);
+    0 2px 4px rgba(0, 0, 0, 0.55);
 }
 
-
 .score-value small {
-
   font-size: 9px;
-
   color: #b7c3dc;
-
   text-shadow: none;
 }
 
-
-/* =========================================================
-   DIVISORES
-   ========================================================= */
-
 .score-divider {
-
   width: 1px;
-
   height: 27px;
-
   flex-shrink: 0;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      transparent,
-      rgba(224, 181, 47, 0.72),
-      transparent
-    );
+  background: linear-gradient(180deg, transparent, rgba(224, 181, 47, 0.72), transparent);
 }
-
-
-/* =========================================================
-   BOTON REINICIO
-   ========================================================= */
 
 .restart-btn {
-
   position: absolute;
-
   right: 4px;
-
   top: 4px;
-
   width: 36px;
-
   height: 36px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   border-radius: 9px;
-
-  border:
-    1px solid
-    #e4b82e;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      #315da6,
-      #17366f 45%,
-      #0a1c42
-    );
-
+  border: 1px solid #e4b82e;
+  background: linear-gradient(145deg, #315da6, #17366f 45%, #0a1c42);
   color: var(--gold-light);
-
   box-shadow:
-
-    inset 0 1px 0
-    rgba(255, 255, 255, 0.2),
-
-    inset 0 -4px 7px
-    rgba(0, 0, 0, 0.35),
-
-    0 3px 7px
-    rgba(0, 0, 0, 0.4);
-
-  -webkit-tap-highlight-color:
-    transparent;
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -4px 7px rgba(0, 0, 0, 0.35),
+    0 3px 7px rgba(0, 0, 0, 0.4);
+  -webkit-tap-highlight-color: transparent;
 }
-
 
 .restart-icon {
-
   font-size: 23px;
-
   line-height: 1;
-
-  text-shadow:
-
-    0 2px 4px
-    rgba(0, 0, 0, 0.6);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
-
 
 .restart-btn:active {
-
-  transform:
-    scale(0.93);
+  transform: scale(0.93);
 }
 
+.history-btn {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  border: 1px solid #e4b82e;
+  background: linear-gradient(145deg, #315da6, #17366f 45%, #0a1c42);
+  color: var(--gold-light);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -4px 7px rgba(0, 0, 0, 0.35),
+    0 3px 7px rgba(0, 0, 0, 0.4);
+  -webkit-tap-highlight-color: transparent;
+}
 
-/* =========================================================
-   MENSAJE
-   ========================================================= */
+.history-icon {
+  font-size: 18px;
+  line-height: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.history-btn:active {
+  transform: scale(0.93);
+}
+
+.history-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.history-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 8, 23, 0.72);
+}
+
+.history-sheet {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 480px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background: #020817;
+  border-radius: 16px 16px 0 0;
+  border: 1px solid rgba(226, 181, 40, 0.5);
+  border-bottom: none;
+  box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  animation: history-sheet-up 0.22s ease-out;
+}
+
+@keyframes history-sheet-up {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.history-sheet-header {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 44px;
+  box-sizing: border-box;
+  background: #06132f;
+  border-bottom: 1px solid rgba(226, 181, 40, 0.3);
+}
+
+.history-sheet-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #ffe27a;
+}
+
+.modal-close-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(226, 181, 40, 0.5);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffe27a;
+  font-size: 14px;
+  line-height: 1;
+  text-align: center;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.modal-close-btn:active {
+  transform: translateY(-50%) scale(0.9);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.history-sheet-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 14px;
+  box-sizing: border-box;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  box-sizing: border-box;
+  background: linear-gradient(145deg, #0e2455 0%, #081a3d 55%, #06132e 100%);
+  border: 1px solid rgba(226, 181, 40, 0.35);
+  border-radius: 10px;
+}
+
+.history-item.record {
+  border-color: rgba(255, 222, 100, 0.85);
+}
+
+.history-item .history-icon {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  line-height: 1;
+  text-shadow: none;
+  border-radius: 50%;
+  background: rgba(214, 165, 29, 0.12);
+  border: 1px solid rgba(226, 181, 40, 0.4);
+  margin-inline-end: 10px;
+}
+
+.history-item .history-icon.record {
+  background: rgba(255, 211, 58, 0.18);
+}
+
+.history-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.history-attempts {
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffe27a;
+  line-height: 1.3;
+}
+
+.history-player {
+  font-size: 11px;
+  font-weight: 700;
+  color: #d8b23f;
+  line-height: 1.3;
+}
+
+.history-date {
+  font-size: 11px;
+  color: #a9b6d2;
+  line-height: 1.3;
+}
+
+.history-badge {
+  flex-shrink: 0;
+  margin-inline-start: 8px;
+  padding: 3px 7px;
+  border-radius: 6px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+  color: #3a2600;
+  background: linear-gradient(145deg, #fff0a0, #e6b62b 60%, #bd8510);
+}
+
+.clear-btn {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(226, 181, 40, 0.5);
+  background: transparent;
+  color: #d8b23f;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.clear-btn:active {
+  transform: scale(0.98);
+  background: rgba(226, 181, 40, 0.08);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  color: #b7c3dc;
+}
+
+.empty-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+  opacity: 0.85;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.name-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.name-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 8, 23, 0.78);
+}
+
+.name-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 340px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 26px 20px 22px;
+  background: linear-gradient(160deg, #0e2455 0%, #081a3d 55%, #06132e 100%);
+  border: 1px solid rgba(226, 181, 40, 0.5);
+  border-radius: 16px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.55);
+  animation: name-card-in 0.22s ease-out;
+}
+
+@keyframes name-card-in {
+  from {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.name-card-icon {
+  font-size: 30px;
+  margin-bottom: 6px;
+  text-shadow: 0 0 10px rgba(255, 222, 100, 0.5);
+}
+
+.name-card-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #ffe27a;
+  margin-bottom: 6px;
+}
+
+.name-card-subtitle {
+  font-size: 12px;
+  color: #b7c3dc;
+  line-height: 1.4;
+  margin-bottom: 18px;
+}
+
+.name-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 14px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(226, 181, 40, 0.45);
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffe27a;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.name-input::placeholder {
+  color: #7c8aab;
+  font-weight: 500;
+}
+
+.name-input:focus {
+  border-color: rgba(226, 181, 40, 0.9);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.name-save-btn {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(226, 181, 40, 0.6);
+  background: linear-gradient(145deg, #fff0a0, #e6b62b 60%, #bd8510);
+  color: #2a1b00;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.name-save-btn:active {
+  transform: scale(0.98);
+}
+
+.confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confetti span {
+  position: absolute;
+  top: -12px;
+  width: 6px;
+  height: 12px;
+  border-radius: 1px;
+  opacity: 0;
+  animation: confetti-fall 1.6s ease-in forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    opacity: 1;
+    transform: translateY(-12px) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(640px) rotate(560deg);
+  }
+}
+
+.confetti span:nth-child(1) {
+  left: 32.4%;
+  background: #ffe27a;
+  width: 7px;
+  animation-delay: 0.08s;
+  animation-duration: 1.66s;
+}
+
+.confetti span:nth-child(2) {
+  left: 10.8%;
+  background: #d6a51d;
+  width: 5px;
+  animation-delay: 0.29s;
+  animation-duration: 1.84s;
+}
+
+.confetti span:nth-child(3) {
+  left: 10.1%;
+  background: #f5cc45;
+  width: 6px;
+  animation-delay: 0.21s;
+  animation-duration: 1.37s;
+}
+
+.confetti span:nth-child(4) {
+  left: 7.6%;
+  background: #f5cc45;
+  width: 5px;
+  animation-delay: 0.28s;
+  animation-duration: 1.86s;
+}
+
+.confetti span:nth-child(5) {
+  left: 56.2%;
+  background: #ffe27a;
+  width: 7px;
+  animation-delay: 0.2s;
+  animation-duration: 1.88s;
+}
+
+.confetti span:nth-child(6) {
+  left: 82.7%;
+  background: #ffe27a;
+  width: 7px;
+  animation-delay: 0.14s;
+  animation-duration: 1.3s;
+}
+
+.confetti span:nth-child(7) {
+  left: 31.0%;
+  background: #f5cc45;
+  width: 7px;
+  animation-delay: 0.41s;
+  animation-duration: 1.33s;
+}
+
+.confetti span:nth-child(8) {
+  left: 62.1%;
+  background: #ffe27a;
+  width: 7px;
+  animation-delay: 0.19s;
+  animation-duration: 1.58s;
+}
+
+.confetti span:nth-child(9) {
+  left: 7.6%;
+  background: #ffffff;
+  width: 6px;
+  animation-delay: 0.1s;
+  animation-duration: 1.68s;
+}
+
+.confetti span:nth-child(10) {
+  left: 45.8%;
+  background: #d6a51d;
+  width: 5px;
+  animation-delay: 0.46s;
+  animation-duration: 1.45s;
+}
+
+.confetti span:nth-child(11) {
+  left: 67.7%;
+  background: #f5cc45;
+  width: 6px;
+  animation-delay: 0.12s;
+  animation-duration: 1.6s;
+}
+
+.confetti span:nth-child(12) {
+  left: 84.3%;
+  background: #ffe27a;
+  width: 5px;
+  animation-delay: 0.36s;
+  animation-duration: 1.4s;
+}
+
+.confetti span:nth-child(13) {
+  left: 50.1%;
+  background: #ffffff;
+  width: 6px;
+  animation-delay: 0.08s;
+  animation-duration: 1.44s;
+}
+
+.confetti span:nth-child(14) {
+  left: 5.7%;
+  background: #f5cc45;
+  width: 6px;
+  animation-delay: 0.33s;
+  animation-duration: 1.74s;
+}
+
+.confetti span:nth-child(15) {
+  left: 34.0%;
+  background: #ffffff;
+  width: 5px;
+  animation-delay: 0.18s;
+  animation-duration: 1.55s;
+}
+
+.confetti span:nth-child(16) {
+  left: 81.0%;
+  background: #ffe27a;
+  width: 5px;
+  animation-delay: 0.47s;
+  animation-duration: 1.53s;
+}
+
+.confetti span:nth-child(17) {
+  left: 70.7%;
+  background: #ffffff;
+  width: 6px;
+  animation-delay: 0.15s;
+  animation-duration: 1.6s;
+}
+
+.confetti span:nth-child(18) {
+  left: 69.4%;
+  background: #ffffff;
+  width: 6px;
+  animation-delay: 0.44s;
+  animation-duration: 1.44s;
+}
+
+.confetti span:nth-child(19) {
+  left: 17.8%;
+  background: #fff4b0;
+  width: 5px;
+  animation-delay: 0.06s;
+  animation-duration: 1.24s;
+}
+
+.confetti span:nth-child(20) {
+  left: 71.4%;
+  background: #ffffff;
+  width: 5px;
+  animation-delay: 0.2s;
+  animation-duration: 1.84s;
+}
+
+.confetti span:nth-child(21) {
+  left: 17.6%;
+  background: #d6a51d;
+  width: 6px;
+  animation-delay: 0.2s;
+  animation-duration: 1.39s;
+}
+
+.confetti span:nth-child(22) {
+  left: 83.2%;
+  background: #fff4b0;
+  width: 7px;
+  animation-delay: 0.14s;
+  animation-duration: 1.49s;
+}
+
+.confetti span:nth-child(23) {
+  left: 85.1%;
+  background: #d6a51d;
+  width: 5px;
+  animation-delay: 0.48s;
+  animation-duration: 1.31s;
+}
+
+.confetti span:nth-child(24) {
+  left: 23.8%;
+  background: #f5cc45;
+  width: 5px;
+  animation-delay: 0.12s;
+  animation-duration: 1.54s;
+}
 
 .message {
-
   flex-shrink: 0;
-
   width: 100%;
-
   min-height: 21px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   margin-bottom: 3px;
-
   padding: 2px 6px;
-
   box-sizing: border-box;
-
   border-radius: 7px;
-
-  border:
-    1px solid
-    rgba(224, 181, 47, 0.55);
-
-  background:
-
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(212, 164, 25, 0.15),
-      transparent
-    );
-
+  border: 1px solid rgba(224, 181, 47, 0.55);
+  background: linear-gradient(90deg, transparent, rgba(212, 164, 25, 0.15), transparent);
   color: var(--gold-light);
-
   font-size: 9px;
-
   font-weight: 900;
-
   letter-spacing: 0.4px;
 }
 
-
 .message.new-record {
-
-  border-color:
-    rgba(255, 222, 100, 0.9);
-
-  background:
-
-    linear-gradient(
-      90deg,
-      rgba(212, 164, 25, 0.06),
-      rgba(255, 211, 58, 0.25),
-      rgba(212, 164, 25, 0.06)
-    );
-
-  box-shadow:
-
-    0 0 12px
-    rgba(245, 198, 45, 0.18);
+  border-color: rgba(255, 222, 100, 0.9);
+  background: linear-gradient(
+    90deg,
+    rgba(212, 164, 25, 0.06),
+    rgba(255, 211, 58, 0.25),
+    rgba(212, 164, 25, 0.06)
+  );
+  box-shadow: 0 0 12px rgba(245, 198, 45, 0.18);
 }
-
-
-/* =========================================================
-   TABLERO 4 X 4
-   ========================================================= */
 
 .board {
-
   flex: 1;
-
   width: 100%;
-
   min-width: 0;
-
   min-height: 0;
-
   display: grid;
-
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
-
-  grid-template-rows:
-    repeat(4, minmax(0, 1fr));
-
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
   gap: 4px;
-
   overflow: hidden;
 }
-
-
-/* =========================================================
-   CARTAS
-   ========================================================= */
 
 .card {
-
   position: relative;
-
   width: 100%;
-
   height: 100%;
-
   min-width: 0;
-
   min-height: 0;
-
   padding: 0;
-
-  border:
-    1px solid
-    #dcae25;
-
+  border: 1px solid #dcae25;
   border-radius: 10px;
-
   background: transparent;
-
   overflow: hidden;
-
   perspective: 1200px;
-
   cursor: pointer;
-
   appearance: none;
-
   -webkit-appearance: none;
-
-  -webkit-tap-highlight-color:
-    transparent;
-
+  -webkit-tap-highlight-color: transparent;
   box-shadow:
-
-    0 3px 7px
-    rgba(0, 0, 0, 0.5),
-
-    0 0 0 1px
-    rgba(255, 220, 88, 0.08);
-
+    0 3px 7px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 220, 88, 0.08);
   transition:
-
     transform 0.12s ease,
-
     box-shadow 0.2s ease;
+  animation: card-enter 0.45s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.75) translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
 
 .card:active {
-
-  transform:
-    scale(0.96);
+  transform: scale(0.96);
 }
-
-
-/* =========================================================
-   CARAS
-   ========================================================= */
 
 .face {
-
   position: absolute;
-
   inset: 0;
-
   width: 100%;
-
   height: 100%;
-
   box-sizing: border-box;
-
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   justify-content: center;
-
   backface-visibility: hidden;
-
-  -webkit-backface-visibility:
-    hidden;
-
-  transition:
-
-    transform 0.44s
-    cubic-bezier(
-      0.2,
-      0.75,
-      0.25,
-      1
-    );
+  -webkit-backface-visibility: hidden;
+  transition: transform 0.44s cubic-bezier(0.2, 0.75, 0.25, 1);
 }
 
-
-/* =========================================================
-   REVERSO AZUL
-   ========================================================= */
-
 .face.back {
-
   z-index: 2;
-
-  transform:
-    rotateY(0deg);
-
+  transform: rotateY(0deg);
   background:
-
-    radial-gradient(
-      circle at 50% 50%,
-      rgba(54, 101, 186, 0.35),
-      transparent 42%
-    ),
-
+    radial-gradient(circle at 50% 50%, rgba(54, 101, 186, 0.35), transparent 42%),
     repeating-linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.025) 0px,
@@ -832,415 +918,158 @@ ion-toolbar {
       transparent 2px,
       transparent 9px
     ),
-
-    linear-gradient(
-      145deg,
-      #28559c 0%,
-      #163d82 24%,
-      #0d2a63 52%,
-      #081d48 75%,
-      #051331 100%
-    );
-
-  border:
-    1px solid
-    rgba(255, 219, 84, 0.55);
-
+    linear-gradient(145deg, #28559c 0%, #163d82 24%, #0d2a63 52%, #081d48 75%, #051331 100%);
+  border: 1px solid rgba(255, 219, 84, 0.55);
   box-shadow:
-
-    inset 0 0 16px
-    rgba(0, 0, 0, 0.32),
-
-    inset 0 1px 0
-    rgba(255, 255, 255, 0.18);
+    inset 0 0 16px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
-
-/* =========================================================
-   LINEA SUPERIOR
-   ========================================================= */
-
 .card-metal-line {
-
   position: absolute;
-
   left: 9%;
-
   width: 82%;
-
   height: 2px;
-
-  background:
-
-    linear-gradient(
-      90deg,
-      transparent,
-      #e7b72c,
-      #fff0a0,
-      #e7b72c,
-      transparent
-    );
-
+  background: linear-gradient(90deg, transparent, #e7b72c, #fff0a0, #e7b72c, transparent);
   opacity: 0.9;
-
   z-index: 3;
 }
 
-
 .card-metal-line.top {
-
   top: 8%;
 }
 
-
-/* =========================================================
-   DECORACIONES
-   ========================================================= */
-
 .back-decoration {
-
   position: absolute;
-
   top: 20%;
-
   bottom: 20%;
-
   width: 2px;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      transparent,
-      rgba(229, 181, 44, 0.75),
-      transparent
-    );
-
+  background: linear-gradient(180deg, transparent, rgba(229, 181, 44, 0.75), transparent);
   opacity: 0.65;
 }
 
-
 .back-decoration.left {
-
   left: 9%;
 }
 
-
 .back-decoration.right {
-
   right: 9%;
 }
 
-
-.back-stars {
-
-  position: absolute;
-
-  top: 14%;
-
-  color: #f5cc45;
-
-  font-size: 8px;
-
-  text-shadow:
-
-    0 0 7px
-    rgba(255, 211, 63, 0.8);
-
-  z-index: 4;
-}
-
-
-/* =========================================================
-   ESCUDO DEL REVERSO
-   CORREGIDO
-   ========================================================= */
-
 .crest-panel {
-
   position: relative;
-
   width: 66%;
-
   height: 55%;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   z-index: 4;
-
   overflow: visible;
-
   margin-top: 3%;
 }
 
-
 .crest-frame {
-
   position: relative;
-
   width: 78%;
-
   height: 88%;
-
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   justify-content: center;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      #244f96,
-      #0e2a61 55%,
-      #061636
-    );
-
-  clip-path:
-
-    polygon(
-      12% 0,
-      88% 0,
-      100% 10%,
-      100% 70%,
-      50% 100%,
-      0 70%,
-      0 10%
-    );
-
+  background: linear-gradient(145deg, #244f96, #0e2a61 55%, #061636);
+  clip-path: polygon(12% 0, 88% 0, 100% 10%, 100% 70%, 50% 100%, 0 70%, 0 10%);
   box-shadow:
-
-    inset 0 0 8px
-    rgba(255, 255, 255, 0.1),
-
-    0 3px 8px
-    rgba(0, 0, 0, 0.45);
-
+    inset 0 0 8px rgba(255, 255, 255, 0.1),
+    0 3px 8px rgba(0, 0, 0, 0.45);
   overflow: visible;
 }
 
-
 .crest-frame::before {
-
   content: "";
-
   position: absolute;
-
   inset: 4px;
-
-  clip-path:
-
-    polygon(
-      12% 0,
-      88% 0,
-      100% 10%,
-      100% 70%,
-      50% 100%,
-      0 70%,
-      0 10%
-    );
-
-  border:
-    1px solid
-    rgba(255, 221, 93, 0.5);
+  clip-path: polygon(12% 0, 88% 0, 100% 10%, 100% 70%, 50% 100%, 0 70%, 0 10%);
+  border: 1px solid rgba(255, 221, 93, 0.5);
 }
-
 
 .crest-star {
-
   position: absolute;
-
   top: 7%;
-
   color: #ffe27b;
-
   font-size: 9px;
-
-  text-shadow:
-
-    0 0 5px
-    rgba(255, 215, 69, 0.7);
+  text-shadow: 0 0 5px rgba(255, 215, 69, 0.7);
 }
-
 
 .crest-text {
-
   position: relative;
-
   margin-top: 11px;
-
   color: #ffe17a;
-
-  font-family:
-    Georgia,
-    serif;
-
-  font-size:
-    clamp(
-      9px,
-      2.8vw,
-      15px
-    );
-
+  font-family: Georgia, serif;
+  font-size: clamp(9px, 2.8vw, 15px);
   font-weight: 900;
-
   letter-spacing: 1.2px;
-
   line-height: 1;
-
   text-shadow:
-
     0 1px 0 #fff1a4,
-
-    0 2px 4px
-    rgba(0, 0, 0, 0.7);
+    0 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-
-/*
-   ESCUDO COMPLETO
-
-   No se fuerza una altura.
-   Mantiene la proporción original.
-*/
-
 .crest-icon {
-
   display: block;
-
   width: 42%;
-
   max-width: 42px;
-
   height: auto;
-
   max-height: 48%;
-
   margin-top: 4px;
-
   object-fit: contain;
-
   object-position: center;
-
-  filter:
-
-    drop-shadow(
-      0 2px 3px
-      rgba(0, 0, 0, 0.65)
-    );
-
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.65));
   z-index: 5;
 }
 
-
-/* =========================================================
-   LINEAS DEL REVERSO
-   ========================================================= */
-
 .back-lines {
-
   position: absolute;
-
   bottom: 14%;
-
   left: 20%;
-
   width: 60%;
-
   height: 12px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 3px;
 }
 
-
 .back-lines span {
-
   display: block;
-
   width: 15px;
-
   height: 1px;
-
-  background:
-    #dba927;
-
+  background: #dba927;
   opacity: 0.7;
 }
 
-
 .back-lines span:nth-child(2) {
-
   width: 25px;
-
-  background:
-    #ffe47c;
+  background: #ffe47c;
 }
-
-
-/* =========================================================
-   MILLONARIOS
-   ========================================================= */
 
 .back-bottom {
-
   position: absolute;
-
   bottom: 5%;
-
   color: #e0bb4b;
-
-  font-size:
-    clamp(
-      5px,
-      1.35vw,
-      7px
-    );
-
+  font-size: clamp(5px, 1.35vw, 7px);
   font-weight: 900;
-
   letter-spacing: 1.2px;
-
   opacity: 0.95;
-
   z-index: 6;
-
   white-space: nowrap;
-
-  text-shadow:
-
-    0 1px 2px
-    rgba(0, 0, 0, 0.65);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
 }
 
-
-/* =========================================================
-   FRENTE DORADO
-   ========================================================= */
-
 .face.front {
-
   z-index: 1;
-
   padding: 4px;
-
-  transform:
-    rotateY(180deg);
-
+  transform: rotateY(180deg);
   background:
-
     repeating-linear-gradient(
       125deg,
       rgba(255, 255, 255, 0.05) 0px,
@@ -1248,13 +1077,7 @@ ion-toolbar {
       transparent 1px,
       transparent 5px
     ),
-
-    radial-gradient(
-      ellipse at 50% 5%,
-      rgba(255, 249, 187, 0.95),
-      transparent 28%
-    ),
-
+    radial-gradient(ellipse at 50% 5%, rgba(255, 249, 187, 0.95), transparent 28%),
     linear-gradient(
       145deg,
       #fff0a0 0%,
@@ -1264,1411 +1087,631 @@ ion-toolbar {
       #bd8510 73%,
       #f7d45a 100%
     );
-
-  border:
-    1px solid
-    #ffe88a;
-
+  border: 1px solid #ffe88a;
   box-shadow:
-
-    inset 0 0 9px
-    rgba(255, 255, 255, 0.55),
-
-    inset 0 0 17px
-    rgba(92, 53, 0, 0.25);
+    inset 0 0 9px rgba(255, 255, 255, 0.55),
+    inset 0 0 17px rgba(92, 53, 0, 0.25);
 }
 
-
-/* =========================================================
-   MARCO
-   ========================================================= */
-
 .front-frame {
-
   position: absolute;
-
   inset: 3px;
-
-  border:
-    1.5px solid
-    rgba(107, 65, 0, 0.6);
-
+  border: 1.5px solid rgba(107, 65, 0, 0.6);
   border-radius: 7px;
-
   pointer-events: none;
-
   z-index: 2;
 }
 
-
 .front-frame::before {
-
   content: "";
-
   position: absolute;
-
   inset: 2px;
-
-  border:
-    1px solid
-    rgba(255, 244, 170, 0.6);
-
+  border: 1px solid rgba(255, 244, 170, 0.6);
   border-radius: 5px;
 }
 
-
-/* =========================================================
-   ADORNOS DE ESQUINA
-   ========================================================= */
-
 .corner-ornament {
-
   position: absolute;
-
   z-index: 4;
-
   width: 7px;
-
   height: 7px;
-
-  transform:
-    rotate(45deg);
-
-  background:
-
-    linear-gradient(
-      145deg,
-      #fff6d0,
-      var(--gold) 50%,
-      var(--gold-dark)
-    );
-
+  transform: rotate(45deg);
+  background: linear-gradient(145deg, #fff6d0, var(--gold) 50%, var(--gold-dark));
   box-shadow:
-
-    0 0 3px
-    rgba(0, 0, 0, 0.5),
-
-    inset 0 0 0 1px
-    rgba(255, 255, 255, 0.5);
+    0 0 3px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
-
 
 .corner-ornament.tl {
-
   top: 3px;
-
   left: 3px;
 }
-
 
 .corner-ornament.tr {
-
   top: 3px;
-
   right: 3px;
 }
 
-
 .corner-ornament.bl {
-
   bottom: 3px;
-
   left: 3px;
 }
 
-
 .corner-ornament.br {
-
   bottom: 3px;
-
   right: 3px;
 }
 
-
-/* =========================================================
-   CINTA LEYENDA (CON CORONA)
-   ========================================================= */
-
 .legend-ribbon {
-
   position: relative;
-
   z-index: 6;
-
   width: 92%;
-
   min-height: 17px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 3px;
-
   margin-bottom: 5px;
-
   padding: 3px 5px 2px;
-
   box-sizing: border-box;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      #274a8f 0%,
-      #16316b 45%,
-      #0a1c45 100%
-    );
-
-  border-top:
-    1px solid
-    rgba(255, 224, 130, 0.7);
-
-  border-bottom:
-    1px solid
-    rgba(255, 224, 130, 0.7);
-
-  clip-path:
-
-    polygon(
-      6% 0,
-      94% 0,
-      100% 50%,
-      94% 100%,
-      6% 100%,
-      0 50%
-    );
-
+  background: linear-gradient(180deg, #274a8f 0%, #16316b 45%, #0a1c45 100%);
+  border-top: 1px solid rgba(255, 224, 130, 0.7);
+  border-bottom: 1px solid rgba(255, 224, 130, 0.7);
+  clip-path: polygon(6% 0, 94% 0, 100% 50%, 94% 100%, 6% 100%, 0 50%);
   box-shadow:
-
-    0 2px 5px
-    rgba(0, 0, 0, 0.55),
-
-    inset 0 1px 0
-    rgba(255, 255, 255, 0.12);
+    0 2px 5px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
-
 
 .legend-ribbon::before,
 .legend-ribbon::after {
-
   content: "";
-
   position: absolute;
-
   bottom: -4px;
-
   width: 0;
-
   height: 0;
-
   border-style: solid;
 }
 
-
 .legend-ribbon::before {
-
   left: 1%;
-
   border-width: 4px 4px 0 0;
-
-  border-color:
-    #071633
-    transparent
-    transparent
-    transparent;
+  border-color: #071633 transparent transparent transparent;
 }
-
 
 .legend-ribbon::after {
-
   right: 1%;
-
   border-width: 4px 0 0 4px;
-
-  border-color:
-    #071633
-    transparent
-    transparent
-    transparent;
+  border-color: #071633 transparent transparent transparent;
 }
-
 
 .ribbon-crown {
-
   position: absolute;
-
   top: -9px;
-
   left: 50%;
-
-  transform:
-    translateX(-50%);
-
+  transform: translateX(-50%);
   color: var(--gold-light);
-
   font-size: 12px;
-
   line-height: 1;
-
   text-shadow:
-
-    0 0 4px
-    rgba(255, 220, 90, 0.7),
-
-    0 2px 3px
-    rgba(0, 0, 0, 0.7);
+    0 0 4px rgba(255, 220, 90, 0.7),
+    0 2px 3px rgba(0, 0, 0, 0.7);
 }
-
 
 .ribbon-text {
-
   color: #ffe17a;
-
-  font-size:
-    clamp(
-      7px,
-      1.8vw,
-      10px
-    );
-
+  font-size: clamp(7px, 1.8vw, 10px);
   font-weight: 900;
-
   letter-spacing: 1.6px;
-
   line-height: 1;
-
-  text-shadow:
-
-    0 1px 2px
-    rgba(0, 0, 0, 0.7);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
 }
-
-
-/* =========================================================
-   FOTO DEL JUGADOR
-   ========================================================= */
 
 .player-photo-wrap {
-
   position: relative;
-
   z-index: 3;
-
   flex: 1;
-
   min-height: 0;
-
   width: 100%;
-
   display: flex;
-
   align-items: flex-start;
-
   justify-content: center;
-
   overflow: hidden;
-
   border-radius: 5px;
-
-  background:
-    #795407;
-
-  box-shadow:
-
-    inset 0 0 6px
-    rgba(78, 46, 0, 0.45);
+  background: #795407;
+  box-shadow: inset 0 0 6px rgba(78, 46, 0, 0.45);
 }
-
 
 .photo-frame {
-
   position: relative;
-
   width: 100%;
-
   height: 100%;
-
   overflow: hidden;
-
   border-radius: 4px;
-
-  border:
-    1px solid
-    rgba(103, 61, 0, 0.8);
+  border: 1px solid rgba(103, 61, 0, 0.8);
 }
 
-
-/* Chispas doradas sobre la foto */
 .photo-frame::before {
-
   content: "";
-
   position: absolute;
-
   inset: 0;
-
   z-index: 3;
-
   pointer-events: none;
-
   opacity: 0.9;
-
   background:
-
-    radial-gradient(
-      circle 1.3px
-      at 22% 14%,
-      #fff8e0,
-      transparent 100%
-    ),
-
-    radial-gradient(
-      circle 1px
-      at 68% 8%,
-      #fff8e0,
-      transparent 100%
-    ),
-
-    radial-gradient(
-      circle 1.5px
-      at 85% 24%,
-      #ffe9a3,
-      transparent 100%
-    ),
-
-    radial-gradient(
-      circle 1px
-      at 10% 34%,
-      #ffe9a3,
-      transparent 100%
-    ),
-
-    radial-gradient(
-      circle 1.1px
-      at 90% 48%,
-      #fff8e0,
-      transparent 100%
-    ),
-
-    radial-gradient(
-      circle 1px
-      at 32% 6%,
-      #ffe9a3,
-      transparent 100%
-    ),
-
-    radial-gradient(
-      ellipse 40% 22%
-      at 50% 3%,
-      rgba(255, 250, 220, 0.35),
-      transparent 70%
-    );
+    radial-gradient(circle 1.3px at 22% 14%, #fff8e0, transparent 100%),
+    radial-gradient(circle 1px at 68% 8%, #fff8e0, transparent 100%),
+    radial-gradient(circle 1.5px at 85% 24%, #ffe9a3, transparent 100%),
+    radial-gradient(circle 1px at 10% 34%, #ffe9a3, transparent 100%),
+    radial-gradient(circle 1.1px at 90% 48%, #fff8e0, transparent 100%),
+    radial-gradient(circle 1px at 32% 6%, #ffe9a3, transparent 100%),
+    radial-gradient(ellipse 40% 22% at 50% 3%, rgba(255, 250, 220, 0.35), transparent 70%);
 }
-
-
-/* =========================================================
-   IMAGEN
-   CORTE DESDE ARRIBA HACIA ABAJO
-   ========================================================= */
 
 .player-img {
-
   display: block;
-
   width: 100%;
-
   height: 100%;
-
   object-fit: cover;
-
-  /*
-     IMPORTANTE:
-
-     50% = centro
-     top = prioriza la parte superior
-
-     Así las cabezas quedan visibles.
-  */
-
   object-position: center top;
 }
 
-
-/* =========================================================
-   REFLEJO DE FOTO
-   ========================================================= */
-
 .photo-frame::after {
-
   content: "";
-
   position: absolute;
-
   inset: 0;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      rgba(255, 245, 165, 0.12),
-      transparent 20%,
-      transparent 75%,
-      rgba(53, 28, 0, 0.2)
-    );
-
+  background: linear-gradient(
+    180deg,
+    rgba(255, 245, 165, 0.12),
+    transparent 20%,
+    transparent 75%,
+    rgba(53, 28, 0, 0.2)
+  );
   pointer-events: none;
 }
 
-
-/* =========================================================
-   PLACA DEL EQUIPO
-   ========================================================= */
-
-/* =========================================================
-   PLACA INFERIOR: NOMBRE + LAUREL + ESCUDO
-   ========================================================= */
-
 .legend-plaque {
-
   position: relative;
-
   z-index: 6;
-
   flex-shrink: 0;
-
   width: 96%;
-
   margin-top: 3px;
-
   padding: 0;
-
   box-sizing: border-box;
-
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
 }
-
 
 .plaque-name {
-
   position: relative;
-
   width: 100%;
-
   min-height: 15px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   padding: 2px 6px 1px;
-
   box-sizing: border-box;
-
   color: #ffe17a;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      #274a8f 0%,
-      #16316b 45%,
-      #0a1c45 100%
-    );
-
-  border-top:
-    1px solid
-    rgba(255, 224, 130, 0.7);
-
-  border-bottom:
-    1px solid
-    rgba(255, 224, 130, 0.7);
-
-  clip-path:
-
-    polygon(
-      8% 0,
-      92% 0,
-      100% 50%,
-      92% 100%,
-      8% 100%,
-      0 50%
-    );
-
-  box-shadow:
-
-    0 2px 5px
-    rgba(0, 0, 0, 0.5);
-
-  font-size:
-    clamp(
-      6px,
-      1.6vw,
-      8px
-    );
-
+  background: linear-gradient(180deg, #274a8f 0%, #16316b 45%, #0a1c45 100%);
+  border-top: 1px solid rgba(255, 224, 130, 0.7);
+  border-bottom: 1px solid rgba(255, 224, 130, 0.7);
+  clip-path: polygon(8% 0, 92% 0, 100% 50%, 92% 100%, 8% 100%, 0 50%);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  font-size: clamp(6px, 1.6vw, 8px);
   font-weight: 900;
-
   letter-spacing: 0.6px;
-
   line-height: 1;
-
   white-space: nowrap;
-
-  text-shadow:
-
-    0 1px 2px
-    rgba(0, 0, 0, 0.7);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
 }
-
 
 .plaque-name::before,
 .plaque-name::after {
-
   content: "";
-
   position: absolute;
-
   bottom: -4px;
-
   width: 0;
-
   height: 0;
-
   border-style: solid;
 }
 
-
 .plaque-name::before {
-
   left: 3%;
-
   border-width: 4px 4px 0 0;
-
-  border-color:
-    #071633
-    transparent
-    transparent
-    transparent;
+  border-color: #071633 transparent transparent transparent;
 }
-
 
 .plaque-name::after {
-
   right: 3%;
-
   border-width: 4px 0 0 4px;
-
-  border-color:
-    #071633
-    transparent
-    transparent
-    transparent;
+  border-color: #071633 transparent transparent transparent;
 }
 
-
 .plaque-crest-row {
-
   position: relative;
-
   z-index: 8;
-
   margin-top: -7px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 4px;
 }
 
-
 .plaque-crest {
-
   position: relative;
-
   z-index: 8;
-
   flex-shrink: 0;
-
   width: 26px;
-
   height: 26px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 }
 
-
 .plaque-crest img {
-
   width: 26px;
-
   height: 26px;
-
   object-fit: contain;
-
-  filter:
-
-    drop-shadow(
-      0 2px 3px
-      rgba(0, 0, 0, 0.7)
-    )
-
-    drop-shadow(
-      0 0 3px
-      rgba(0, 0, 0, 0.5)
-    );
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
 }
 
-
-/* =========================================================
-   LAUREL DORADO (APROXIMACIÓN CSS)
-   ========================================================= */
-
 .laurel {
-
   position: relative;
-
   flex-shrink: 0;
-
   width: 20px;
-
   height: 20px;
 }
 
-
 .laurel::before {
-
   content: "";
-
   position: absolute;
-
   inset: 1px;
-
   border-radius: 50%;
-
   border: 1.5px solid transparent;
-
   border-left-color: var(--gold);
-
   border-bottom-color: var(--gold);
-
   transform: rotate(10deg);
-
   opacity: 0.9;
 }
 
-
 .laurel::after {
-
   content: "";
-
   position: absolute;
-
   inset: 0;
-
   opacity: 0.95;
-
   background:
-
-    radial-gradient(
-      ellipse 2.6px 2px
-      at 3px 17px,
-      var(--gold-light),
-      transparent 75%
-    ),
-
-    radial-gradient(
-      ellipse 2.8px 2.1px
-      at 1px 12px,
-      var(--gold-light),
-      transparent 75%
-    ),
-
-    radial-gradient(
-      ellipse 2.8px 2.1px
-      at 2px 7px,
-      var(--gold),
-      transparent 75%
-    ),
-
-    radial-gradient(
-      ellipse 2.6px 2px
-      at 6px 3px,
-      var(--gold),
-      transparent 75%
-    ),
-
-    radial-gradient(
-      ellipse 2.4px 1.8px
-      at 11px 0.5px,
-      var(--gold-dark),
-      transparent 75%
-    );
+    radial-gradient(ellipse 2.6px 2px at 3px 17px, var(--gold-light), transparent 75%),
+    radial-gradient(ellipse 2.8px 2.1px at 1px 12px, var(--gold-light), transparent 75%),
+    radial-gradient(ellipse 2.8px 2.1px at 2px 7px, var(--gold), transparent 75%),
+    radial-gradient(ellipse 2.6px 2px at 6px 3px, var(--gold), transparent 75%),
+    radial-gradient(ellipse 2.4px 1.8px at 11px 0.5px, var(--gold-dark), transparent 75%);
 }
-
 
 .laurel-right {
-
-  transform:
-    scaleX(-1);
+  transform: scaleX(-1);
 }
-
-
-/* =========================================================
-   VOLTEO
-   ========================================================= */
 
 .card.revealed .face.back {
-
-  transform:
-    rotateY(-180deg);
+  transform: rotateY(-180deg);
 }
-
 
 .card.revealed .face.front {
-
-  transform:
-    rotateY(0deg);
+  transform: rotateY(0deg);
 }
-
 
 .card.revealed {
-
-  border-color:
-    #ffe477;
-
+  border-color: #ffe477;
   box-shadow:
-
-    0 0 10px 2px
-    rgba(255, 224, 130, 0.65),
-
-    0 0 26px 6px
-    rgba(255, 200, 60, 0.4),
-
-    0 0 46px 14px
-    rgba(140, 180, 255, 0.18);
+    0 0 10px 2px rgba(255, 224, 130, 0.65),
+    0 0 26px 6px rgba(255, 200, 60, 0.4),
+    0 0 46px 14px rgba(140, 180, 255, 0.18);
 }
-
-
-/* =========================================================
-   PAREJA
-   ========================================================= */
 
 .card.matched {
-
-  border-color:
-    #ffe477;
-
+  border-color: #ffe477;
   box-shadow:
-
-    0 0 8px
-    rgba(255, 215, 65, 0.75),
-
-    0 0 17px
-    rgba(245, 198, 45, 0.35);
+    0 0 8px rgba(255, 215, 65, 0.75),
+    0 0 17px rgba(245, 198, 45, 0.35);
 }
 
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
 .collection-footer {
-
   position: relative;
-
   flex-shrink: 0;
-
   height: 10px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 3px;
-
   margin-top: 1px;
-
   color: #dcb33c;
 }
 
-
 .footer-line {
-
   width: 18%;
-
   height: 1px;
-
-  background:
-
-    linear-gradient(
-      90deg,
-      transparent,
-      #b68414
-    );
+  background: linear-gradient(90deg, transparent, #b68414);
 }
-
 
 .footer-line.right {
-
-  background:
-
-    linear-gradient(
-      90deg,
-      #b68414,
-      transparent
-    );
+  background: linear-gradient(90deg, #b68414, transparent);
 }
 
-
 .footer-star {
-
   color: #e4bc3e;
-
   font-size: 4px;
 }
 
-
 .footer-crest {
-
   width: 7px;
-
   height: 7px;
-
   object-fit: contain;
 }
 
-
 .footer-name {
-
   font-size: 4px;
-
   font-weight: 800;
-
   letter-spacing: 1px;
-
   color: #d9c28a;
-
   white-space: nowrap;
 }
 
-
-/* =========================================================
-   SIN SCROLL
-   ========================================================= */
-
 ion-content::part(scroll) {
-
   overflow: hidden !important;
 }
 
-
-/* =========================================================
-   PANTALLAS PEQUEÑAS
-   ========================================================= */
-
 @media (max-height: 700px) {
-
   ion-toolbar {
-
-    height: 50px;
-
-    min-height: 50px;
+    height: 51px;
+    min-height: 51px;
   }
-
-
+  .brand-crest-wrap {
+    margin-bottom: 4px;
+  }
   .brand-title {
-
-    margin-top: 8px;
-
-    font-size: 23px;
-
+    font-size: 22px;
     letter-spacing: 3px;
   }
-
-
-  .brand-crown {
-
-    font-size: 16px;
+  .brand-crest {
+    width: 18px;
+    height: 18px;
   }
-
-
-  .brand-stars {
-
-    top: 28px;
-
-    padding:
-      0 25px;
+  .brand-crest-line {
+    width: 30px;
   }
-
-
   .scoreboard {
-
     height: 44px;
-
-    margin-bottom: 3px;
+    margin-bottom: 9px;
   }
-
-
-  .restart-btn {
-
+  .restart-btn,
+  .history-btn {
     width: 35px;
-
     height: 35px;
   }
-
-
   .score-value {
-
     font-size: 17px;
   }
-
-
   .collection-footer {
-
     height: 8px;
   }
 }
 
-
-/* =========================================================
-   PANTALLAS MUY PEQUEÑAS
-   ========================================================= */
-
 @media (max-height: 620px) {
-
   ion-toolbar {
-
     height: 47px;
-
     min-height: 47px;
   }
-
-
+  .brand-crest-wrap {
+    margin-bottom: 3px;
+  }
   .brand-title {
-
-    margin-top: 7px;
-
-    font-size: 21px;
-
-    letter-spacing: 2.7px;
+    font-size: 19px;
+    letter-spacing: 2.4px;
   }
-
-
-  .brand-crown {
-
-    top: -2px;
-
-    font-size: 15px;
+  .brand-crest {
+    width: 15px;
+    height: 15px;
   }
-
-
-  .brand-stars {
-
-    top: 26px;
-
-    padding:
-      0 22px;
+  .brand-crest-line {
+    width: 22px;
   }
-
-
-  .brand-line {
-
-    bottom: 2px;
-  }
-
-
-  .brand-shield {
-
-    bottom: -5px;
-
-    width: 18px;
-
-    height: 22px;
-
-    font-size: 9px;
-  }
-
-
   .scoreboard {
-
     height: 42px;
-
-    margin-bottom: 2px;
+    margin-bottom: 7px;
   }
-
-
   .restart-btn {
-
     width: 33px;
-
     height: 33px;
-
     top: 4px;
-
     right: 4px;
   }
-
-
+  .history-btn {
+    width: 33px;
+    height: 33px;
+    top: 4px;
+    left: 4px;
+  }
   .score-value {
-
     font-size: 16px;
   }
-
-
   .score-label {
-
     font-size: 6px;
-
     letter-spacing: 0.9px;
   }
-
-
   .board {
-
     gap: 3px;
   }
-
-
   .card {
-
     border-radius: 8px;
   }
-
-
-  /* ---------------------------------
-     REVERSO EN PANTALLA PEQUEÑA
-     --------------------------------- */
-
   .crest-panel {
-
     width: 68%;
-
     height: 55%;
-
     margin-top: 2%;
   }
-
-
   .crest-frame {
-
     width: 80%;
-
     height: 88%;
   }
-
-
   .crest-text {
-
     margin-top: 8px;
-
     font-size: 9px;
   }
-
-
   .crest-icon {
-
     width: 42%;
-
     max-width: 35px;
-
     max-height: 45%;
-
     margin-top: 3px;
   }
-
-
   .back-lines {
-
     bottom: 13%;
   }
-
-
   .back-bottom {
-
     bottom: 5%;
-
     font-size: 5px;
-
     letter-spacing: 1px;
   }
-
-
-  /* ---------------------------------
-     FRENTE
-     --------------------------------- */
-
   .legend-ribbon {
-
     min-height: 14px;
-
     padding: 2px 4px 1px;
-
     margin-bottom: 2px;
   }
-
-
   .ribbon-crown {
-
     top: -7px;
-
     font-size: 10px;
   }
-
-
   .ribbon-text {
-
     font-size: 6px;
   }
-
-
   .legend-plaque {
-
     margin-top: 2px;
-
     padding: 3px 3px 4px;
   }
-
-
   .plaque-name {
-
     font-size: 6px;
   }
-
-
   .plaque-crest {
-
     width: 20px;
-
     height: 20px;
   }
-
-
   .plaque-crest img {
-
     width: 20px;
-
     height: 20px;
   }
-
-
   .laurel {
-
     width: 16px;
-
     height: 16px;
   }
-
-
   .collection-footer {
-
     height: 6px;
-
     margin-top: 0;
   }
-
-
   .footer-name {
-
     font-size: 4px;
-
     letter-spacing: 1px;
   }
-
-
   .footer-crest {
-
     width: 6px;
-
     height: 6px;
   }
 }
 
-
-/* =========================================================
-   PANTALLAS ANGOSTAS (CELULAR)
-   ========================================================= */
-
 @media (max-width: 420px) {
-
   .plaque-crest {
-
     width: 24px;
-
     height: 24px;
   }
-
-
   .plaque-crest img {
-
     width: 24px;
-
     height: 24px;
   }
-
-
   .laurel {
-
     width: 18px;
-
     height: 18px;
   }
 }
 
-
 @media (max-width: 340px) {
-
   .plaque-crest {
-
     width: 21px;
-
     height: 21px;
   }
-
-
   .plaque-crest img {
-
     width: 21px;
-
     height: 21px;
   }
-
-
   .laurel {
-
     width: 15px;
-
     height: 15px;
   }
 }
 
-
-/* =========================================================
-   BRILLO AL VOLTEAR (REFLEJO DE LUZ)
-   ========================================================= */
-
 .card-shine,
 .card-shine-back {
-
   position: absolute;
-
   top: -40%;
-
   left: -70%;
-
   width: 55%;
-
   height: 220%;
-
-  transform:
-    rotate(25deg)
-    translateX(-160%);
-
+  transform: rotate(25deg) translateX(-160%);
   pointer-events: none;
-
   opacity: 0;
-
   z-index: 25;
 }
 
-
 .card-shine {
-
-  background:
-
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.55),
-      rgba(255, 224, 140, 0.75),
-      rgba(255, 255, 255, 0.55),
-      transparent
-    );
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 224, 140, 0.75),
+    rgba(255, 255, 255, 0.55),
+    transparent
+  );
 }
-
 
 .card-shine-back {
-
-  background:
-
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.35),
-      rgba(206, 224, 255, 0.55),
-      rgba(255, 255, 255, 0.35),
-      transparent
-    );
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    rgba(206, 224, 255, 0.55),
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
 }
-
 
 .card.revealed .card-shine {
-
-  animation:
-    shine-sweep 0.8s ease-out;
+  animation: shine-sweep 0.8s ease-out;
 }
-
 
 .card:not(.revealed) .card-shine-back {
-
-  animation:
-    shine-sweep 0.8s ease-out;
+  animation: shine-sweep 0.8s ease-out;
 }
 
-
 @keyframes shine-sweep {
-
   0% {
     opacity: 0;
-
-    transform:
-      rotate(25deg)
-      translateX(-160%);
+    transform: rotate(25deg) translateX(-160%);
   }
-
   15% {
     opacity: 1;
   }
-
   55% {
     opacity: 1;
   }
-
   100% {
     opacity: 0;
-
-    transform:
-      rotate(25deg)
-      translateX(220%);
+    transform: rotate(25deg) translateX(220%);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   .face,
   .card,
   .card-shine,
   .card-shine-back {
-
     animation: none !important;
-
     transition: none !important;
   }
 }

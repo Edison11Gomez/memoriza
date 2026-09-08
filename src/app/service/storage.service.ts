@@ -6,6 +6,8 @@ export interface PartidaHistorial {
   date: string;
   atems: number;
   win: boolean;
+  record?: boolean;
+  name?: string;
 }
 
 @Injectable({
@@ -18,6 +20,10 @@ export class StorageService {
   constructor(private storage: Storage) { }
 
   async init(): Promise<void> {
+    if (this.ionicStorage) {
+      return;
+    }
+
     const storage = await this.storage.create();
     this.ionicStorage = storage;
   }
@@ -47,5 +53,18 @@ export class StorageService {
   async getHistory(): Promise<PartidaHistorial[]> {
     const history: PartidaHistorial[] = (await this.ionicStorage?.get('history')) || [];
     return history;
+  }
+
+  async clearHistory(): Promise<void> {
+    await this.ionicStorage?.set('history', []);
+  }
+
+  async getPlayerName(): Promise<string> {
+    const { value } = await Preferences.get({ key: 'playerName' });
+    return value || '';
+  }
+
+  async setPlayerName(name: string): Promise<void> {
+    await Preferences.set({ key: 'playerName', value: name });
   }
 }
